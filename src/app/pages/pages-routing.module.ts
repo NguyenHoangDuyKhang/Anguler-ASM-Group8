@@ -4,6 +4,9 @@ import {NgModule} from '@angular/core';
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ListComponent} from "./list/list.component";
+import {SpecializedComponent} from './specialized/specialized.component';
+import {SubjectComponent} from './subject/subject.component';
+import {ClassComponent} from './class/class.component';
 import {UsersComponent} from "./users/users.component";
 
 const routes: Routes = [{
@@ -24,6 +27,21 @@ const routes: Routes = [{
       path: 'data',
       component: ListComponent,
       data: {breadcrumb: 'Quản lý đề án'}
+    },
+    {
+      path: 'specialized',
+      component: SpecializedComponent,
+      data: {breadcrumb: 'Quản lý Ngành'}    
+    },
+    {
+      path: 'subject',
+      component: SubjectComponent,
+      data: {breadcrumb: 'Quản lý Môn'}    
+    },
+    {
+      path: 'class',
+      component: ClassComponent,
+      data: {breadcrumb: 'Quản lý Lớp'}    
     },
     {
       path: 'users',

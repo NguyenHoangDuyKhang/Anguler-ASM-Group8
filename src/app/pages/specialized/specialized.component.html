@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">Tên chuyên ngành</th>
+                <th scope="col">Số lượng sinh viên</th>
+                <th scope="col">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data.Listspecialized">
+                <th scope="row">{{item.id}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.qty}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger">Xóa</button>
+                    <button type="button" class="btn btn-warning">Sửa</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-10"></div>
+    <div class="col-2">
+        <button type="button" class="btn btn-primary">Thêm + </button>
+    </div>
+</div>

@@ -16,6 +16,21 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/list',
   },
   {
+    title: 'Quản lý Ngành',
+    icon: 'book',
+    link: '/pages/specialized',
+  },
+  {
+    title: 'Quản lý Môn',
+    icon: 'browser',
+    link: '/pages/subject',
+  },
+  {
+    title: 'Quản lý Lớp',
+    icon: 'layers',
+    link: '/pages/class',
+  },
+  {
     title: 'Quản lý người dùng',
     icon: 'people-outline',
     link: '/pages/users',
