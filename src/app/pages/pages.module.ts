@@ -9,8 +9,13 @@ import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
 import { UsersComponent } from './users/users.component';
 import { SpecializedComponent } from './specialized/specialized.component';
 import { SubjectComponent } from './subject/subject.component';
-import { ClassComponent } from './class/class.component';
 import { PlanComponent } from './plan/plan.component';
+// import {  NbActionsModule,NbButtonModule,NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule } from '@nebular/theme';
+import {NbCardModule,
+  NbIconModule, 
+  NbInputModule, 
+  NbTreeGridModule,
+  NbLayoutModule, NbButtonModule} from '@nebular/theme';
 
 @NgModule({
   imports: [
@@ -19,13 +24,18 @@ import { PlanComponent } from './plan/plan.component';
     DashboardModule,
     NbMenuModule,
     PaginatorModule,
+    NbCardModule,
+    NbIconModule,
+    NbInputModule,
+    NbTreeGridModule,
+    NbLayoutModule,
+    NbButtonModule
   ],
   declarations: [
     PagesComponent,
     UsersComponent,
     SpecializedComponent,
     SubjectComponent,
-    ClassComponent,
     PlanComponent,
   ],
   providers: []
