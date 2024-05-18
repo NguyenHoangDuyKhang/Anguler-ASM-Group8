@@ -11,11 +11,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/dashboard',
   },
   {
-    title: 'Quản lý đề án',
-    icon: 'list-outline',
-    link: '/pages/list',
-  },
-  {
     title: 'Quản lý người dùng',
     icon: 'people-outline',
     link: '/pages/users',

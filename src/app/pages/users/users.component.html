@@ -1,1 +1,47 @@
-<p>Đây là trang User!</p>
+<nb-card>
+
+    <nb-card-header class="d-flex justify-content-between">
+
+        <!-- search input -->
+        <nb-form-field>
+            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+            <input type="text" nbInput placeholder="Tìm kiếm...">
+        </nb-form-field>
+
+
+    </nb-card-header>
+    
+    <nb-card-body>
+        <div class="table-responsive">
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Quyền Hạn</th>
+                        <th scope="col">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="" *ngFor="let item of listUsers">
+                        <td scope="row">{{item.id}}</td>
+                        <td>{{item.firstName}}</td>
+                        <td>{{item.lastName}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.role_name}}</td>
+
+                        <td>
+                            <button nbTooltip="Chi tiết" nbTooltipPlacement="right" nbButton status="basic">
+                                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="alert-circle-outline">
+                                </nb-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </nb-card-body>
+</nb-card>

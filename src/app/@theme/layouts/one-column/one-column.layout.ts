@@ -16,7 +16,7 @@ import { Component } from '@angular/core';
       <nb-layout-column>
         <nb-card>
           <nb-card-body>
-            <xng-breadcrumb></xng-breadcrumb>
+            <xng-breadcrumb separator=">"></xng-breadcrumb>
           </nb-card-body>
         </nb-card>
 

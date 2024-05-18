@@ -3,8 +3,8 @@ import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ListComponent} from "./list/list.component";
-import {UsersComponent} from "./users/users.component";
+import { UsersComponent } from './users/users.component';
+import { PlanDetailComponent } from './plan-detail/plan-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -16,20 +16,24 @@ const routes: Routes = [{
       data: {breadcrumb: 'Dashboard'},
     },
     {
-      path: 'list',
-      component: ListComponent,
-      data: {breadcrumb: 'Quản lý đề án'}
-    },
-    {
-      path: 'data',
-      component: ListComponent,
-      data: {breadcrumb: 'Quản lý đề án'}
-    },
-    {
       path: 'users',
       component: UsersComponent,
       data: {breadcrumb: 'Quản lý người dùng'},
     },
+    {
+      path: 'plans',
+      data: { breadcrumb: 'Quản Lý Đề Án', },
+        children: [
+          {
+            path: ':slug',
+            component: PlanDetailComponent,
+            data: {
+              breadcrumb: (resolvedId: string) => `${resolvedId}`
+            }
+          },
+        ],
+    },
+    
   ],
 }];
 
