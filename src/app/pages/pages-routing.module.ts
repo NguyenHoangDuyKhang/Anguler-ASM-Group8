@@ -5,7 +5,6 @@ import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {SpecializedComponent} from './specialized/specialized.component';
 import {SubjectComponent} from './subject/subject.component';
-import {ClassComponent} from './class/class.component';
 import { PlanComponent } from './plan/plan.component';
 import { UsersComponent } from './users/users.component';
 import { PlanDetailComponent } from './plan-detail/plan-detail.component';
@@ -33,11 +32,6 @@ const routes: Routes = [{
       path: 'subject',
       component: SubjectComponent,
       data: {breadcrumb: 'Quản lý Môn'}    
-    },
-    {
-      path: 'class',
-      component: ClassComponent,
-      data: {breadcrumb: 'Quản lý Lớp'}    
     },
     {
       path: 'users',

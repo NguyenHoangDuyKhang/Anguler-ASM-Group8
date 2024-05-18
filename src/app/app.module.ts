@@ -8,12 +8,14 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbDatepickerModule,
-  NbDialogModule, NbWindowModule, NbToastrModule, NbChatModule
+  NbDialogModule,
+  NbWindowModule,
+  NbToastrModule,
+  NbChatModule,
 } from '@nebular/theme';
 import {HttpClientModule} from "@angular/common/http";
 import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
-import * as eva from 'eva-icons';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,6 @@ import * as eva from 'eva-icons';
     ThemeModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

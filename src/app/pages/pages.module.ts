@@ -8,10 +8,9 @@ import {PagesRoutingModule} from './pages-routing.module';
 import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
 import { SpecializedComponent } from './specialized/specialized.component';
 import { SubjectComponent } from './subject/subject.component';
-import { ClassComponent } from './class/class.component';
 import { PlanComponent } from './plan/plan.component';
 
-import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule,  NbListModule, NbButtonModule, NbTooltipModule, NbFormFieldModule, NbSelectModule } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbLayoutModule, NbListModule, NbButtonModule, NbTooltipModule, NbFormFieldModule, NbSelectModule } from '@nebular/theme';
 
 import { PlanDetailComponent } from './plan-detail/plan-detail.component';
 import { PlanFilesComponent } from './plan-files/plan-files.component';
@@ -35,14 +34,14 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbTooltipModule,
     NbFormFieldModule,
     NbSelectModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    NbLayoutModule,
   ],
   declarations: [
     PagesComponent,
     UsersComponent,
     SpecializedComponent,
     SubjectComponent,
-    ClassComponent,
     PlanComponent,
     PlanDetailComponent,
     PlanFilesComponent,
