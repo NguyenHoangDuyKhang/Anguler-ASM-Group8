@@ -13,7 +13,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Quản lý đề án',
     icon: 'list-outline',
-    link: '/pages/list',
+    link: '/pages/Plan',
   },
   {
     title: 'Quản lý Ngành',

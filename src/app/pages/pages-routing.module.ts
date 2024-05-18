@@ -3,11 +3,11 @@ import {NgModule} from '@angular/core';
 
 import {PagesComponent} from './pages.component';
 import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ListComponent} from "./list/list.component";
 import {SpecializedComponent} from './specialized/specialized.component';
 import {SubjectComponent} from './subject/subject.component';
 import {ClassComponent} from './class/class.component';
 import {UsersComponent} from "./users/users.component";
+import { PlanComponent } from './plan/plan.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,13 +19,8 @@ const routes: Routes = [{
       data: {breadcrumb: 'Dashboard'},
     },
     {
-      path: 'list',
-      component: ListComponent,
-      data: {breadcrumb: 'Quản lý đề án'}
-    },
-    {
-      path: 'data',
-      component: ListComponent,
+      path: 'Plan',
+      component: PlanComponent,
       data: {breadcrumb: 'Quản lý đề án'}
     },
     {
