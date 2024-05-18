@@ -1,0 +1,95 @@
+<nb-card>
+    <nb-card-header class="d-flex justify-content-between">
+        <h6>{{planDetail.name}}</h6>
+
+        <div class="">
+            <button nbTooltip="Chỉnh Sửa" nbTooltipPlacement="right" nbButton nbTooltipStatus="info" status="basic"
+                class="me-3">
+                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="edit-2-outline">
+                </nb-icon>
+            </button>
+            <button nbTooltip="Xóa" nbTooltipPlacement="right" nbTooltipStatus="warning" nbButton status="basic">
+                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="trash-outline">
+                </nb-icon>
+            </button>
+        </div>
+
+    </nb-card-header>
+    <nb-card-body>
+
+        <div class="row mb-3">
+            <div class="col-9">
+                <div class="mb-3">
+                    <span class="fw-semibold">Người Tạo : </span> <span
+                        class="text-warning">{{planDetail.author}}</span>
+                </div>
+
+                <div class="mb-3">
+                    <span class="fw-semibold">Bộ Môn : </span>
+                    <span>{{planDetail.specialize}}</span>
+                </div>
+
+                <div class="">
+                    <span class="fw-semibold"> Trạng Thái :</span>
+                    <span> {{planDetail.status_name}} </span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="fw-semibold">Ngày tạo</p>
+                        <p class="fw-semibold">Ngày cập nhật</p>
+                        <p class="fw-semibold ">Ngày bắt đầu</p>
+                        <p class="fw-semibold ">Ngày kết thúc</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="text-black-50" *ngIf="planDetail.createdAt"> {{planDetail.createdAt}}</p>
+
+                        <p class="text-black-50" *ngIf="planDetail.updatedAt; else elseBlock">
+                            {{planDetail.updatedAt}}
+                        </p>
+                        <ng-template #elseBlock>
+                            <p>Chưa Có</p>
+                        </ng-template>
+
+                        <p class="text-black-50" *ngIf="planDetail.publishedAt; else elseBlock"> 21-10-2004</p>
+                        <ng-template #elseBlock>
+                            <p>Chưa Có</p>
+                        </ng-template>
+
+                        <p class="text-black-50" *ngIf="planDetail.finishedAt; else elseBlock"> 21-10-2004</p>
+                        <ng-template #elseBlock>
+                            <p>Chưa Có</p>
+                        </ng-template>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="">
+            <span class="d-block mb-3 fw-semibold"> Mô tả </span>
+            <span>
+                {{planDetail.description}}
+            </span>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+
+<!-- DOCCUMENT ----------------------------------------------------->
+<hr>
+
+
+<p>Tài Liệu Liên Quan</p>
+
+<div class="row">
+    <div class="col-4">
+        <app-plan-files [plan_ID]="planDetail.id" />
+
+    </div>
+    <div class="col-8">
+        <app-plan-images-doccument [plan_ID]="planDetail.id" />
+    </div>
+</div>

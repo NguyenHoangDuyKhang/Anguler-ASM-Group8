@@ -6,8 +6,9 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {SpecializedComponent} from './specialized/specialized.component';
 import {SubjectComponent} from './subject/subject.component';
 import {ClassComponent} from './class/class.component';
-import {UsersComponent} from "./users/users.component";
 import { PlanComponent } from './plan/plan.component';
+import { UsersComponent } from './users/users.component';
+import { PlanDetailComponent } from './plan-detail/plan-detail.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,7 +20,7 @@ const routes: Routes = [{
       data: {breadcrumb: 'Dashboard'},
     },
     {
-      path: 'Plan',
+      path: 'plans',
       component: PlanComponent,
       data: {breadcrumb: 'Quản lý đề án'}
     },
@@ -43,6 +44,20 @@ const routes: Routes = [{
       component: UsersComponent,
       data: {breadcrumb: 'Quản lý người dùng'},
     },
+    {
+      path: 'plans',
+      data: { breadcrumb: 'Quản Lý Đề Án', },
+        children: [
+          {
+            path: ':slug',
+            component: PlanDetailComponent,
+            data: {
+              breadcrumb: (resolvedId: string) => `${resolvedId}`
+            }
+          },
+        ],
+    },
+    
   ],
 }];
 
