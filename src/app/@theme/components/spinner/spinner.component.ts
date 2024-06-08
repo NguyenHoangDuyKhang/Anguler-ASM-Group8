@@ -1,6 +1,8 @@
 import {Component, HostBinding, Input} from '@angular/core';
 import {Size} from './spinner.size';
 
+// import 
+
 @Component({
   selector: 'ngx-spinner',
   templateUrl: './spinner.component.html',

@@ -10,13 +10,14 @@ import { SpecializedComponent } from './specialized/specialized.component';
 import { SubjectComponent } from './subject/subject.component';
 import { PlanComponent } from './plan/plan.component';
 
-import { NbCardModule, NbIconModule, NbInputModule, NbTreeGridModule, NbLayoutModule, NbListModule, NbButtonModule, NbTooltipModule, NbFormFieldModule, NbSelectModule } from '@nebular/theme';
-
+import { NbCardModule, NbIconModule, NbSpinnerModule, NbInputModule, NbTreeGridModule, NbLayoutModule, NbListModule, NbButtonModule, NbTooltipModule, NbFormFieldModule, NbSelectModule } from '@nebular/theme';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PlanDetailComponent } from './plan-detail/plan-detail.component';
 import { PlanFilesComponent } from './plan-files/plan-files.component';
 import { PlanImagesDoccumentComponent } from './plan-images-doccument/plan-images-doccument.component';
-import { UsersComponent } from './users/users.component';
+import { UsersComponent } from './users/list-user/users.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { AddUserComponent } from './users/add-update-user/add-update-user.component';
 
 @NgModule({
   imports: [
@@ -36,10 +37,12 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbSelectModule,
     Ng2SmartTableModule,
     NbLayoutModule,
+    NbSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     PagesComponent,
-    UsersComponent,
     SpecializedComponent,
     SubjectComponent,
     PlanComponent,
@@ -47,6 +50,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     PlanFilesComponent,
     PlanImagesDoccumentComponent,
     UsersComponent,
+    AddUserComponent,
 
   ],
   providers: []

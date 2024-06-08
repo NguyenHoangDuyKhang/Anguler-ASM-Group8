@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, ViewEncapsulation, Input, OnInit, Output, EventEmitter, INJECTOR} from '@angular/core';
 import {ApiService} from "../../../@core/services/common";
 import {finalize, Observable} from "rxjs";
 import {SpinnerService} from "../spinner/spinner.service";
@@ -10,10 +10,13 @@ import {SpinnerService} from "../spinner/spinner.service";
   styleUrls: ['./paginator.component.scss']
 })
 export class PaginatorComponent implements OnInit {
+  
   @Input() apiUrl: string;
   @Input() current_page: number;
   @Input() last_page: number;
+
   @Output() dataList: EventEmitter<any> = new EventEmitter();
+
   indexPage: number = 1;
   hasPreviousPage: boolean = true;
   hasNextPage: boolean = false;

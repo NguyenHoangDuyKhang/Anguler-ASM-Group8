@@ -1,0 +1,108 @@
+<nb-card class="w-100" *ngIf="!isLoading; else elseBlock">
+
+    <nb-card-header>{{titleModal}}</nb-card-header>
+
+    <nb-card-body>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()" aria-labelledby="title">
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="" class="form-label">First Name</label>
+                        <input nbInput fullWidth name="first_name" formControlName="first_name" required id="first_name"
+                            status="success" autofocus placeholder="First Name">
+                    </div>
+
+                    <div
+                        *ngIf="userForm.get('first_name').invalid && (userForm.get('first_name').dirty || userForm.get('first_name').touched)">
+                        <small *ngIf="userForm.get('first_name').hasError('required')">
+                            <i class="text-danger">Vui lòng nhập thông tin</i>
+                        </small>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Last Name</label>
+                        <input nbInput fullWidth name="last_name" formControlName="last_name" required id="last_name"
+                            status="success" autofocus placeholder="Last Name">
+                    </div>
+
+                    <div
+                        *ngIf="userForm.get('last_name').invalid && (userForm.get('last_name').dirty || userForm.get('last_name').touched)">
+                        <small *ngIf="userForm.get('last_name').hasError('required')">
+                            <i class="text-danger">Vui lòng nhập thông tin</i>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="" class="form-label d-block">Email</label>
+                        <input nbInput fullWidth name="email" formControlName="email" required id="email"
+                            status="success" autofocus placeholder="Email">
+                    </div>
+
+                    <div
+                        *ngIf="userForm.get('email').invalid && (userForm.get('email').dirty || userForm.get('email').touched)">
+                        <small *ngIf="userForm.get('email').hasError('required')">
+                            <i class="text-danger">Vui lòng nhập thông tin</i>
+                        </small>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div *ngIf="!idUser; else elseBlock">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Password</label>
+                            <input nbInput fullWidth name="password" formControlName="password" required id="password"
+                                status="success" autofocus placeholder="password">
+                        </div>
+
+                        <div
+                            *ngIf="userForm.get('password').invalid && (userForm.get('password').dirty || userForm.get('password').touched)">
+                            <small *ngIf="userForm.get('password').hasError('required')">
+                                <i class="text-danger">Vui lòng nhập thông tin</i>
+                            </small>
+                        </div>
+                    </div>
+
+                    <ng-template #elseBlock class="w-100 p-5 table_user">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Password</label>
+                            <input nbInput fullWidth name="password" disabled formControlName="password"
+                                status="success">
+                        </div>
+                    </ng-template>
+
+                </div>
+                <div class="col-6">
+                    <div class="mb-3">
+                        <label for="" class="form-label d-block">Role</label>
+                        <nb-select nbSelect fullWidth name="role_ID" id="role_ID" formControlName="role_ID">
+                            <nb-option [value]="0">Người Dùng</nb-option>
+                            <nb-option [value]="1">Admin</nb-option>
+                        </nb-select>
+                    </div>
+                </div>
+            </div>
+
+            <button class="me-2" type="submit" nbButton hero status="primary">{{nameBtn}}</button>
+        </form>
+
+    </nb-card-body>
+
+
+
+</nb-card>
+
+
+<ng-template #elseBlock class="w-100 p-5 table_user">
+    <div>
+        <nb-card class="w-100 p-4" style="height: 100%;" [nbSpinner]="true" nbSpinnerStatus="basic">
+            <nb-card-body>
+
+            </nb-card-body>
+        </nb-card>
+    </div>
+</ng-template>

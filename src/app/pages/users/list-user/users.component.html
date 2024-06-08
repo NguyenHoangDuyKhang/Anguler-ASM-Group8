@@ -1,0 +1,81 @@
+<nb-card>
+
+    <nb-card-header class="d-flex justify-content-between">
+
+        <!-- search input -->
+        <nb-form-field>
+            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+            <input type="text" nbInput placeholder="Tìm kiếm...">
+        </nb-form-field>
+
+        <a routerLink="/pages/users/new" nbButton status="primary">Thêm Mới</a>
+    </nb-card-header>
+
+    <ngx-paginator (dataList)="onDataChanged($event)" [apiUrl]="pagination.apiUrl" [current_page]="pagination.page"
+    [last_page]="pagination.last_page" ></ngx-paginator>
+
+    <nb-card-body>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Quyền Hạn</th>
+                        <th scope="col">Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="!isLoading; else elseBlock">
+
+                    <tr class="" *ngFor="let item of listUsers; index as i">
+                        <td scope="row">{{i + 1}}</td>
+                        <td>{{item.first_name}}</td>
+                        <td>{{item.last_name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>
+                            <span *ngIf="item.role_ID === 1; else elseBlock">
+                                Admin
+                            </span>
+                            <ng-template #elseBlock>
+                                Người Dùng
+                            </ng-template>
+                        </td>
+                        <td>
+                            <a routerLink="{{item.id}}" class="mx-2" nbTooltip="Edit" nbTooltipPlacement="top" nbButton
+                                status="basic">
+                                <nb-icon icon="edit-2-outline">
+                                </nb-icon>
+                            </a>
+                            <button class="mx-2" (click)="handleDelUser(item.id)" nbTooltip="Xoá"
+                                nbTooltipPlacement="top" nbButton status="basic">
+                                <nb-icon icon="trash-2-outline">
+                                </nb-icon>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+                <ng-template #elseBlock class="w-100">
+                    <tr>
+                        <td colspan="6">
+                            <nb-card class="w-100 p-4" [nbSpinner]="true" nbSpinnerStatus="basic">
+
+                            </nb-card>
+                        </td>
+                    </tr>
+                </ng-template>
+
+            </table>
+        </div>
+
+
+
+
+    </nb-card-body>
+
+   
+
+
+</nb-card>

@@ -9,4 +9,11 @@ export const API_ENDPOINT: IAPIEndpoint = {
     login: '/auth/login',
     logout: '/auth/logout',
   },
+  user: {
+    getAllUsers :  '/api/users',
+    new : '/api/users/new',
+    update : '/api/users/',
+    getOneUser : '/api/users/',
+    delete : '/api/users/',
+  }
 };
