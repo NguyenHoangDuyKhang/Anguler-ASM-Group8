@@ -10,7 +10,8 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <a nbButton outline status="primary"> <nb-icon icon="plus-circle-outline"></nb-icon></a>
+      <a nbButton outline nbButton nbTooltip="Thêm" nbTooltipPlacement="right" status="primary"> <nb-icon
+          icon="plus-circle-outline"></nb-icon></a>
     </div>
 
   </nb-card-header>
@@ -30,18 +31,28 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="" *ngFor="let item of data.Plan">
+          <tr class="" *ngFor="let item of listData">
             <th scope="row">{{item.id}}</th>
             <td>{{item.name}}</td>
             <td>{{item.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</td>
             <td>{{ item.createdAt | date: 'dd/MM/yyyy' }}</td>
             <td>
-              <a nbButton outline status="primary" routerLink="{{item.slug}}"> <nb-icon
-                  icon="menu-outline"></nb-icon></a>
+              <a nbButton nbTooltip="Chi tiết" nbTooltipPlacement="right" outline status="primary"
+                routerLink="{{item.slug}}"> <nb-icon icon="menu-outline"></nb-icon></a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </nb-card-body>
+   <ngx-paginator 
+   [current_page]="cur_Page"
+   [last_page]="last_Page"
+   [apiUrl] ='API_URL'
+   (dataList)="getPage($event)"
+   ></ngx-paginator>
+  </nb-card-body> 
 </nb-card>
+
+<script>
+
+</script>

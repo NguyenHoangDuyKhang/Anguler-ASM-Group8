@@ -47,7 +47,8 @@ export class PaginatorComponent implements OnInit {
       this.indexPage--;
       if (this.indexPage === 1) {
         this.hasPreviousPage = true;
-      }
+      }      
+      this.current_page = this.indexPage; 
       this.getData();
     }
   }
@@ -59,6 +60,7 @@ export class PaginatorComponent implements OnInit {
       if (this.indexPage === this.last_page) {
         this.hasNextPage = true;
       }
+      this.current_page = this.last_page;
       this.getData();
     }
   }

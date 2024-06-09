@@ -1,3 +1,16 @@
-#detel{
-    text-decoration: none;
+@import '~intro.js/introjs.css';
+.container{
+    .row{
+        .tb{
+            // border: 2px solid red;
+            border-radius: 20px;
+        }
+
+
+        #detel{
+            text-decoration: none;
+        }
+    }
 }
+
+
