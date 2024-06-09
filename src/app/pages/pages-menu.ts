@@ -13,7 +13,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Quản lý đề án',
     icon: 'list-outline',
-    link: '/pages/Plan',
+    link: '/pages/plans',
   },
   {
     title: 'Quản lý Ngành',
@@ -24,11 +24,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Quản lý Môn',
     icon: 'browser',
     link: '/pages/subject',
-  },
-  {
-    title: 'Quản lý Lớp',
-    icon: 'layers',
-    link: '/pages/class',
   },
   {
     title: 'Quản lý người dùng',

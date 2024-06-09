@@ -8,15 +8,22 @@ import {
   NbSidebarModule,
   NbMenuModule,
   NbDatepickerModule,
-  NbDialogModule, NbWindowModule, NbToastrModule, NbChatModule
+  NbDialogModule,
+  NbWindowModule,
+  NbToastrModule,
+  NbChatModule,
+  NbButtonGroupModule,
+  NbLayoutModule,
+  NbButtonModule,
 } from '@nebular/theme';
 import {HttpClientModule} from "@angular/common/http";
+
 import {CoreModule} from "./@core/core.module";
 import {ThemeModule} from "./@theme/theme.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +41,12 @@ import {ThemeModule} from "./@theme/theme.module";
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    NbButtonGroupModule,
+    NbLayoutModule,
+    NbButtonModule,
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

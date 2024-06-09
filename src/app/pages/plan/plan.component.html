@@ -1,36 +1,58 @@
-<div class="container">
-    <div class="row">
-        <table class="table tb">
-            <thead>
-              <tr>
-                <th scope="col">id</th>
-                <th scope="col">Tên đề án</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col">Ngày tạo</th>
-                <!-- <th scope="col">Thao Tác</th> -->
-                <th scope="col">Xem</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of data.Plan">
-                <th scope="row">{{item.id}}</th>
-                <td>{{item.name}}</td>
-                <td>{{item.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</td>
-                <td>{{ item.createdAt | date: 'dd/MM/yyyy' }}</td>
-                <!-- <td> -->
-                    <!-- <button type="button" class="btn btn-danger">Xóa</button> -->
-                    <!-- <button type="button" class="btn btn-warning">Sửa</button> -->
-                <!-- </td> -->
-                <td> <a routerLink="{{item.slug}}" class="btn btn-primary text-white" id="detel">Chi tiết</a></td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
-</div>
+<nb-card>
 
-<div class="row">
-    <div class="col-10"></div>
-    <div class="col-2">
-        <button type="button" class="btn btn-primary">Thêm + </button>
+  <nb-card-header class="d-flex justify-content-between">
+    <div class="row">
+      <div class="col-lg-11">
+        <form>
+          <input type="text" nbInput placeholder="Tìm kiếm...">
+          <!-- <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon> -->
+        </form>
+      </div>
     </div>
-</div>
+    <div class="col-lg-1">
+      <a nbButton outline nbButton nbTooltip="Thêm" nbTooltipPlacement="right" status="primary"> <nb-icon
+          icon="plus-circle-outline"></nb-icon></a>
+    </div>
+
+  </nb-card-header>
+
+
+  <nb-card-body>
+
+    <div class="table-responsive">
+      <table class="table ">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Tên đề án</th>
+            <th scope="col">Trạng thái</th>
+            <th scope="col">Ngày tạo</th>
+            <th scope="col">Xem chi tiết</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="" *ngFor="let item of listData">
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</td>
+            <td>{{ item.createdAt | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <a nbButton nbTooltip="Chi tiết" nbTooltipPlacement="right" outline status="primary"
+                routerLink="{{item.slug}}"> <nb-icon icon="menu-outline"></nb-icon></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   <ngx-paginator 
+   [current_page]="cur_Page"
+   [last_page]="last_Page"
+   [apiUrl] ='API_URL'
+   (dataList)="getPage($event)"
+   ></ngx-paginator>
+  </nb-card-body> 
+</nb-card>
+
+<script>
+
+</script>
