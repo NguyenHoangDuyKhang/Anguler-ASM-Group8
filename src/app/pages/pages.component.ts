@@ -34,10 +34,6 @@ export class PagesComponent {
         element: document.querySelector('ngx-header'),
         intro: '<img src="https://i.pinimg.com/originals/02/20/ef/0220efe54902d5c2e44bd856f179e8a0.gif" width="250px"> Đây là Header',
       },
-      // {
-      //   element: document.querySelector('nb-card-body'),
-      //   intro: 'Đây là cái gì không biết nữa hehe'
-      // },
       {
         element: document.querySelector('nb-layout-column'),
         intro: '<img src="https://i.pinimg.com/originals/2c/fa/d7/2cfad7190ee52b041d002286a3af22d1.gif" width="250px"> Còn đây là giao diện chính',
@@ -48,16 +44,10 @@ export class PagesComponent {
     ]
     
     });
-    // intro.start();
-    // const introShown = localStorage.getItem('introShown');
-    // if (!introShown) {
-    //   intro.start();
-    //   localStorage.setItem('introShown', 'true');
-    //   return;
-    // } 
+
     const lastExitTime = localStorage.getItem('lastExitTime');
 
-  if (!lastExitTime || (Date.now() - Number(lastExitTime)) > (1 * 60 * 1000)) {
+  if (!lastExitTime || (Date.now() - Number(lastExitTime)) > (60 * 60 * 1000)) {
     intro.start();
     localStorage.setItem('lastExitTime', String(Date.now()));
     return;

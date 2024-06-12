@@ -10,16 +10,15 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <a nbButton outline nbButton nbTooltip="Thêm" nbTooltipPlacement="right" status="primary"> <nb-icon
-          icon="plus-circle-outline"></nb-icon></a>
+      <a nbButton outline nbButton nbTooltip="Thêm" nbTooltipPlacement="top" (click)="open(dialog)" status="primary">
+        <nb-icon icon="plus-circle-outline"></nb-icon></a>
     </div>
 
   </nb-card-header>
 
 
   <nb-card-body>
-
-    <div class="table-responsive">
+    <div>
       <table class="table ">
         <thead>
           <tr>
@@ -38,21 +37,82 @@
             <td>{{ item.createdAt | date: 'dd/MM/yyyy' }}</td>
             <td>
               <a nbButton nbTooltip="Chi tiết" nbTooltipPlacement="right" outline status="primary"
-                routerLink="{{item.slug}}"> <nb-icon icon="menu-outline"></nb-icon></a>
+                routerLink="{{item.slug}}" (click)="getOne(item.id)"> <nb-icon icon="menu-outline"></nb-icon></a>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-   <ngx-paginator 
-   [current_page]="cur_Page"
-   [last_page]="last_Page"
-   [apiUrl] ='API_URL'
-   (dataList)="getPage($event)"
-   ></ngx-paginator>
-  </nb-card-body> 
+    <ngx-paginator [current_page]="cur_Page" [last_page]="last_Page" [apiUrl]='API_URL'
+      (dataList)="getPage($event)"></ngx-paginator>
+  </nb-card-body>
 </nb-card>
 
-<script>
 
-</script>
+<ng-template #dialog let-data let-ref="dialogRef" >
+  <nb-card style="width: 600px; height: 700px;">
+    <nb-card-header>Thêm Đề Án</nb-card-header>
+    <nb-card-body>
+      <form [formGroup]="postData" (ngSubmit)="submitAdd()">
+        <div class="col-lg-12" style="width: 550px;">
+          <div class="mb-3">
+            <label class="form-label">Tên đề án</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" formControlName="name">
+            <span class="text-danger"
+            *ngIf="postData.get('name')!.invalid && (postData.get('name')!.dirty || postData.get('name')!.touched)"
+            >Vui lòng nhập tên đề án</span>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Người Tạo</label>
+            <select class="form-select" formControlName="userId">
+              <option *ngFor="let item of listUser" [value]="item.id">{{ item.full_name }}</option>
+            </select>
+            <span class="text-danger"
+            *ngIf="postData.get('userId')!.invalid && (postData.get('userId')!.dirty || postData.get('userId')!.touched)"
+            >Vui lòng chọn người tạo</span>
+          </div>
+          
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Chuyên Ngành</label>
+            <select class="form-select" formControlName="specializedId">
+              <option *ngFor="let item of listSpecialized" [value]="item.id">{{ item.name }}</option>
+            </select>
+            <span class="text-danger"
+            *ngIf="postData.get('specializedId')!.invalid && (postData.get('specializedId')!.dirty || postData.get('specializedId')!.touched)"
+            >Vui lòng chọn chuyên ngành</span>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Tên Nhóm</label>
+            <input type="text" class="form-control" id="group" name="group" [(ngModel)]="group" formControlName="group">
+            <span class="text-danger"
+            *ngIf="postData.get('group')!.invalid && (postData.get('group')!.dirty || postData.get('group')!.touched)"
+            >Vui lòng nhập tên nhóm</span>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" [(ngModel)]="slug" formControlName="slug">
+            <span class="text-danger"
+            *ngIf="postData.get('slug')!.invalid && (postData.get('slug')!.dirty || postData.get('slug')!.touched)"
+            >Vui lòng nhập slug</span>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Mô tả</label>
+            <textarea class="form-control" id="description" name="description" [(ngModel)]="description" formControlName="description"  rows="3"></textarea>
+            <span class="text-danger"
+            *ngIf="postData.get('slug')!.invalid && (postData.get('slug')!.dirty || postData.get('slug')!.touched)"
+            >Vui lòng nhập mô tả</span>
+          </div>
+          
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3">Thêm</button>
+          </div>
+
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

@@ -12,12 +12,19 @@ export class ServicePlan {
     return this.http.get(this.url + `plans`)
   }
 
+  getAllspecialized():Observable<any> {
+    return this.http.get(this.url + 'specialized')
+  }
+  getAllUser():Observable<any> {
+    return this.http.get(this.url + 'users?page=1')
+  }
+
   getOne(id:number| 0 ):Observable<any> {
     return this.http.get(this.url + `plans/` + id)
   }
 
   postData(data: any ):Observable<any> {
-    return this.http.post(this.url , data)
+    return this.http.post(this.url +'plans' , data)
   }
 
   deleteData(id: number): Observable<any>{

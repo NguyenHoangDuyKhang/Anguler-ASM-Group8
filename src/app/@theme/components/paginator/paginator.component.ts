@@ -70,7 +70,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   getData() {
-    this.spinner.show();
+    // this.spinner.show();
     this.getPaginator()
         .pipe(
             finalize(() => {

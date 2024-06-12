@@ -17,7 +17,7 @@ export class ServiceSpecialized {
   }
 
   postData(data: any ):Observable<any> {
-    return this.http.post(this.url , data)
+    return this.http.post(this.url + 'specialized' , data)
   }
 
   deleteData(id: number): Observable<any>{
