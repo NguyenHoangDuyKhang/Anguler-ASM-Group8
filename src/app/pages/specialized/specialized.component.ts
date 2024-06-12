@@ -1,7 +1,7 @@
 import { Component, TemplateRef, OnInit } from '@angular/core';
 import { specializedData } from './../../mock/specialized-data';
 import { NbDialogService } from '@nebular/theme';
-import { ServiceSpecialized } from './../../@core/api/specialized.service';
+import { ServiceSpecialized } from '../../@core/services/apis/specialized.service';
 @Component({
   selector: 'app-specialized',
   templateUrl: './specialized.component.html',

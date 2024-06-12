@@ -32,12 +32,14 @@ import {
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
 } from './layouts';
+
 import { DEFAULT_THEME } from './styles/theme.default';
 import { DARK_THEME } from './styles/theme.dark';
 import {AlertShowcaseComponent} from "./components/alert/ngx-alerts.component";
 import {DialogConfirmComponent} from "./components/dialog-confirm/dialog-confirm.component";
 import {BreadcrumbModule} from "xng-breadcrumb";
 import {RouterLink} from "@angular/router";
+
 
 const NB_MODULES = [
   NbCardModule,
@@ -74,7 +76,7 @@ const PIPES = [
 @NgModule({
   imports: [CommonModule, ...NB_MODULES, NbAlertModule, BreadcrumbModule, RouterLink, NbInputModule],
   exports: [CommonModule, ...PIPES, ...COMPONENTS],
-  declarations: [...COMPONENTS, ...PIPES],
+  declarations: [...COMPONENTS, ...PIPES,],
 })
 export class ThemeModule {
   static forRoot(): ModuleWithProviders<ThemeModule> {

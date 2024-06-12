@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ServiceSpecialized {
+  
   url = 'http://localhost:8181/api/';
+
   constructor( private http: HttpClient ) { }
 
   getAll():Observable<any> {

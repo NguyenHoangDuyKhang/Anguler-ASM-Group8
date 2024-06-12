@@ -1,14 +1,22 @@
-<nb-card size="small">
+<nb-card size="medium">
     <nb-card-header>
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between mb-3">
             <span> Files </span>
-            <button nbButton size="tiny" outline status="primary">upload + </button>
         </div>
 
     </nb-card-header>
     <nb-list>
-        <nb-list-item *ngFor="let item of files">
-            {{ item.name }} 
+        <nb-list-item *ngFor="let item of listFiles" class="d-flex align-items-center justify-content-between">
+            <div class="">
+                <div class="text-one-line">
+                    {{ item.name }}
+                </div>
+                <span class="caption text-danger py-1" (click)="delFile(item.id)">Xóa</span>
+            </div>
+
+            <span class="btn caption" (click)="downLoadFile(item.name)">
+                download
+            </span>
         </nb-list-item>
     </nb-list>
 </nb-card>

@@ -1,18 +1,21 @@
 <nb-card size="medium">
-    <nb-card-header>
-        <div class="d-flex justify-content-between">
-            <span>Hình ảnh</span>
+  <nb-card-header>
+    <div class="d-flex justify-content-between mb-3">
+      <span>Hình ảnh</span>
+      <button class="btn border-primary" (click)="openModal()">+ Upload</button>
+    </div>
+  </nb-card-header>
 
-            <button nbButton size="tiny" outline status="primary">upload + </button>
-        </div>
+  <nb-card-body>
+    <div class="row">
+      <div *ngFor="let item of images" class="col-2 mb-2">
+        <img src="{{apiUrl + '/' + item.name }}" alt="" class="w-100">
+      </div>
+    </div>
 
-    </nb-card-header>
-    <nb-card-body>
-        <div class="row">
-            <div *ngFor="let item of images" class="col-2 mb-2">
-                <img src="{{ item.url }}" alt="" style="width: 100px;">
-            </div>
-        </div>
-    </nb-card-body>
+    <div *ngIf="query.page !== query.lastPage" class="text-center mt-3">
+      <button class="btn border" (click)="seeMore(query.page)">xem thêm</button>
+    </div>
+  </nb-card-body>
 
 </nb-card>

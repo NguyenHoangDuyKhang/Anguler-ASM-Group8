@@ -18,7 +18,9 @@ export interface IPlans {
 export type IListPlans = Pick<IPlans, 'id' | 'name' | 'slug' | 'status_name' | 'createdAt'>
 
 
-export interface IPlanImages {
-    id : number;
-    url : string;
+export interface IPlanFiles {
+    id : number
+    name : string;
+    type : number
 }
+

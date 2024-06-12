@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlanData } from './../../mock/Plan-data';
 import introJs from 'intro.js/intro.js';
 import { NbDialogService } from '@nebular/theme';
-import { ServicePlan } from './../../@core/api/plan.service';
+import { ServicePlan } from '../../@core/services/apis/plan.service';
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',

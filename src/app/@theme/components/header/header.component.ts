@@ -5,6 +5,12 @@ import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import {LayoutService} from "../../../@core/services/common/layout.service";
 
+
+import { LocalStorageService } from 'app/@core/services/common';
+import { LOCALSTORAGE_KEY, ROUTER_CONFIG } from 'app/@core/config';
+
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -36,12 +42,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private menuService: NbMenuService,
     private themeService: NbThemeService,
     private layoutService: LayoutService,
-    private breakpointService: NbMediaBreakpointsService
+    private breakpointService: NbMediaBreakpointsService,
+    private  localStorageService : LocalStorageService,
+    private router : Router
   ) { }
 
   ngOnInit() {
+    this.user = { picture: 'assets/images/account.png'}
+    this.user.name = this.getInfo()
+
+    
+
     this.currentTheme = this.themeService.currentTheme;
-    this.user = {name: 'Alibaba', picture: 'assets/images/account.png'}
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
         .pipe(
@@ -56,7 +68,22 @@ export class HeaderComponent implements OnInit, OnDestroy {
             takeUntil(this.destroy$),
         )
         .subscribe(themeName => this.currentTheme = themeName);
+
+        this.menuService.onItemClick()
+        .pipe(
+          map(({ item: { title } }) => title),
+        )
+        .subscribe((data) => {
+          console.log(data);
+          if(data === 'Log out') {
+            console.log('namcute');
+            this.handleLogout()
+          }
+          
+        });
   }
+
+
 
   ngOnDestroy() {
     this.destroy$.next();
@@ -76,5 +103,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   navigateHome() {
     this.menuService.navigateHome();
     return false;
+  }
+
+  getInfo() {
+    return this.localStorageService.getItem<any>(LOCALSTORAGE_KEY.userInfo);
+  }
+
+
+  handleLogout() {
+    this.router.navigate([ROUTER_CONFIG.auth.login]).then();
+    this.localStorageService.removeItem(LOCALSTORAGE_KEY.token);
+    this.localStorageService.removeItem(LOCALSTORAGE_KEY.userInfo);
+
+    return 
   }
 }

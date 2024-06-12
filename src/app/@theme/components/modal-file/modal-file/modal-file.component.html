@@ -1,0 +1,20 @@
+<p>modal-file works!</p>
+<nb-card>
+    <nb-card-body>
+        <form method="post" (ngSubmit)="onSubmit()" aria-labelledby="title" enctype="multipart/form-data">
+
+            <div class="mb-3 ">
+                <label for="" class="form-label">Choose file</label>
+
+                <div class="d-flex align-items-center">
+                    <input type="file" (change)="onImagePicked($event)" class="form-control me-3" name="file" id="file"
+                        placeholder="" />
+
+                    <button class=" btn btn-primary" type="submit" style="min-width: 120px;">Thêm Mới</button>
+
+                </div>
+            </div>
+
+        </form>
+    </nb-card-body>
+</nb-card>

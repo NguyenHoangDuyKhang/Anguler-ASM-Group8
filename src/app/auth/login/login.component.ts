@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
-      password: new FormControl('', [Validators.required, Validators.minLength(8)])
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
 
     });
 
@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
   }
 
   protected handleLoginSuccess(res) {
-    this.storageService.setItem(LOCALSTORAGE_KEY.userInfo, res.name);
-    this.storageService.setItem(LOCALSTORAGE_KEY.token, res.token);
+    this.storageService.setItem(LOCALSTORAGE_KEY.userInfo, res.data.email);
+    this.storageService.setItem(LOCALSTORAGE_KEY.token, res.data.token);
     this.router.navigate([ROUTER_CONFIG.pages]).then();
     this.spinner.hide();
   }
