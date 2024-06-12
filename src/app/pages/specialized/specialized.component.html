@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <a nbButton outline status="primary">
+      <a nbButton outline  nbTooltip="Thêm" nbTooltipPlacement="top" status="primary" (click)="open(add)">
         <nb-icon icon="plus-circle-outline"></nb-icon>
       </a>
     </div>
@@ -35,9 +35,9 @@
             <td>{{item.name}}</td>
             <td>{{item.qty_student}}</td>
             <td>
-              <button nbButton outline status="danger"> <nb-icon icon="trash-2-outline"></nb-icon></button>
+              <button nbButton outline nbTooltip="Xóa" nbTooltipPlacement="top" status="danger" (click)="deleteUnit(item.id)"> <nb-icon icon="trash-2-outline"></nb-icon></button>
               <span style="margin-right: 20px;"></span>
-              <button nbButton outline status="warning" nbButton (click)="open(dialog)"  (click)="getOneUnit(item.id)"><nb-icon icon="edit-outline"></nb-icon></button>
+              <button nbButton outline nbTooltip="Sửa" nbTooltipPlacement="top" status="warning" (click)="open(dialog)"  (click)="getOne(item.id)"><nb-icon icon="edit-outline"></nb-icon></button>
             </td>
           </tr>
           
@@ -53,24 +53,52 @@
             <div class="col-lg-12" style="width: 900px; height: 100%;">
               <div class="form-group">
                 <label class="my-2">Ngành:</label><br/>
-                <input type="text" id="specialized" name="specialized" nbInput fullWidth [(ngModel)]="GetOne.name"  value="{{GetOne.name}}">
+                <input type="text" id="specialized" name="specialized" nbInput fullWidth [(ngModel)]="GetOne.name">
               </div>
 
               <div class="form-group mt-3">
                 <label class="my-2">Số lượng sinh viên:</label>
-                <input type="number" id="qty_student" name="qty_student" nbInput fullWidth  [(ngModel)]="GetOne.qty_student" value="{{GetOne.qty_student}}">
+                <input type="number" id="qty_student" name="qty_student" nbInput fullWidth  [(ngModel)]="GetOne.qty_student">
               </div>
 
               <div class="form-group mt-3">
             <button (click)="submitForm()" type="button" nbButton status="primary">Sửa</button>
               </div>
-
             </div>
+            
           </form>
         </nb-card-body>
       </nb-card>
     </ng-template>
-    <!-- <button nbButton (click)="open(dialog)">Open Dialog</button> -->
+
+    <ng-template #add let-data let-ref="dialogRef">
+      <nb-card>
+        <nb-card-header>Thêm Chuyên Ngành</nb-card-header>
+        <nb-card-body>
+          <form [formGroup]="postData" (ngSubmit)="submitAdd()">
+            <div style="width: 900px; height: 100%;">
+              <div class="mb-3">
+                <label class="form-label">Tên Chuyên Ngành</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" formControlName="name">
+                <span class="text-danger"
+                *ngIf="postData.get('name')!.invalid && (postData.get('name')!.dirty || postData.get('name')!.touched)"
+                >Vui lòng nhập tên chuyên ngành</span>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Số lượng sinh viên</label>
+                <input type="text" id="qty_student" class="form-control" name="qty_student" [(ngModel)]="qty_student" formControlName="qty_student">
+                <span class="text-danger"
+                *ngIf="postData.get('qty_student')!.invalid && (postData.get('qty_student')!.dirty || postData.get('qty_student')!.touched)"
+                >Vui lòng nhập số lượng sinh viên</span>
+              </div>
+            </div>
+           
+            <button type="submit" class="btn btn-primary">Thêm</button>
+          </form>
+        
+        </nb-card-body>
+      </nb-card>
+    </ng-template>
   </nb-card-body>
 
 </nb-card>
