@@ -3,6 +3,7 @@ import { NbDialogService } from '@nebular/theme';
 import { ServiceSpecialized } from './../../@core/api/specialized.service';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NbThemeService } from '@nebular/theme';
 @Component({
   selector: 'app-specialized',
   templateUrl: './specialized.component.html',
@@ -19,13 +20,19 @@ export class SpecializedComponent implements OnInit {
   name: any;
   qty_student: any;
   postData!: FormGroup;
+  isDarkTheme: boolean = false;
   constructor(
     private dialogService: NbDialogService,
     private unit: ServiceSpecialized,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+    private themeService: NbThemeService
   ) {}
 
   ngOnInit(): void {
+    this.themeService.onThemeChange()
+    .subscribe((theme) => {
+      this.isDarkTheme = theme?.name === 'dark'; // Kiểm tra nếu chủ đề là 'dark'
+    });
     this.getAll();
     this.postData = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -125,20 +132,24 @@ export class SpecializedComponent implements OnInit {
   }
 
   deleteUnit(id: number) {
-    this.unit.deleteData(id).subscribe(
-      (res) => {
-        console.log('Delete Success:', res);
-        const index = this.listData.findIndex((item:any) => item.id === id);
-        if (index !== -1) {
-          this.listData.splice(index, 1); // Xóa phần tử khỏi mảng
-          this.showToast_delete('success')
+    const confirmDelete = confirm('Bạn có chắc chắn muốn xóa chuyên ngành này?');
+    if(confirmDelete){
+      this.unit.deleteData(id).subscribe(
+        (res) => {
+          console.log('Delete Success:', res);
+          const index = this.listData.findIndex((item:any) => item.id === id);
+          if (index !== -1) {
+            this.listData.splice(index, 1); // Xóa phần tử khỏi mảng
+            this.showToast_delete('success')
+          }
+        },    
+        (error) => {
+          this.showToast_Danger('danger');
+          console.log(error);
         }
-      },    
-      (error) => {
-        this.showToast_Danger('danger');
-        console.log(error);
-      }
-    );
+      );
+    }
+   
   }
 
 
