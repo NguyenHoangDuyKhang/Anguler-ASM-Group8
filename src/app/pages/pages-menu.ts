@@ -20,11 +20,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'book',
     link: '/pages/specialized',
   },
-  {
-    title: 'Quản lý Môn',
-    icon: 'browser',
-    link: '/pages/subject',
-  },
+  // {
+  //   title: 'Quản lý Môn',
+  //   icon: 'browser',
+  //   link: '/pages/subject',
+  // },
   {
     title: 'Quản lý người dùng',
     icon: 'people-outline',

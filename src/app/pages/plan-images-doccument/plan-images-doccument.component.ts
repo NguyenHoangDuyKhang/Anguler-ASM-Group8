@@ -1,10 +1,9 @@
 import { Component, Input, OnInit  } from '@angular/core';
-// import { IPlanImages } from 'app/@core/interfaces/plan.interface';
+
 
 import { ServicePlan } from 'app/@core/services/apis/plan.service';
 import { API_BASE_URL } from 'app/@core/config/api-endpoint.config';
 
-// import { ModalFileAddComponent } from 'app/@theme/components/1/modal-file-add.component';
 
 import { ModalFileComponent } from 'app/@theme/components/modal-file/modal-file/modal-file.component';
 import { NbDialogService } from '@nebular/theme';
@@ -18,8 +17,7 @@ import { NbDialogService } from '@nebular/theme';
 
 export class PlanImagesDoccumentComponent implements OnInit {
 
-  images = [
-  ]
+  images = []
 
   apiUrl = API_BASE_URL
   
@@ -30,12 +28,15 @@ export class PlanImagesDoccumentComponent implements OnInit {
   query = {
     page : 1,
     fileType : 1,
-    lastPage : 0
+    limit : 6
   }
+
+  lastPage : number = 0
+  total : number = 0
+  
 
   ngOnInit(): void {
     this.getAllFiles(this.plan_ID, this.query);
-    console.log(this.apiUrl);
   }
 
 
@@ -48,14 +49,15 @@ export class PlanImagesDoccumentComponent implements OnInit {
   }
 
   handleFailed(res : any) {
-    console.log(res);
+    console.log('Đã có lỗi xãy ra vui lòng thử lại');
   }
 
   handleSuccess (res : any) {
     console.log(res);
     this.images.push(...res.data)
     this.query.page = res.pagination.page;
-    this.query.lastPage = res.pagination.last_page
+    this.lastPage = res.pagination.last_page
+    this.total = res.pagination.total_items
     console.log(this.images, this.query);
   }
 
@@ -71,6 +73,11 @@ export class PlanImagesDoccumentComponent implements OnInit {
         fileType: this.query.fileType,
         plan_ID : this.plan_ID
       },
+    }).onClose.subscribe((data) => {
+      if(data && data.length > 0) { 
+        this.images.unshift(...data)
+        console.log(this.images, this.query);
+      }
     });
   }
 

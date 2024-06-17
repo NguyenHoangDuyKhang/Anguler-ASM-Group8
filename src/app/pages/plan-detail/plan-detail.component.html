@@ -1,83 +1,82 @@
 <nb-card *ngIf="data">
-    <nb-card-header class="d-flex justify-content-between">
-        <h6>{{data.name}}</h6>
+  <nb-card-header class="d-flex justify-content-between">
+    <h6>{{data.name}}</h6>
 
-        <div class="">
-            <button nbTooltip="Chỉnh Sửa" nbTooltipPlacement="top" nbButton nbTooltipStatus="info" status="basic"
-                (click)="open(dialog)" class="me-3">
-                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="edit-2-outline">
-                </nb-icon>
-            </button>
-            <button nbTooltip="Xóa" nbTooltipPlacement="right" nbTooltipStatus="warning" nbButton status="basic"
-                (click)="deleteUnit(data.id)">
-                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="trash-outline">
-                </nb-icon>
-            </button>
+    <div class="">
+      <button nbTooltip="Chỉnh Sửa" nbTooltipPlacement="top" nbButton nbTooltipStatus="info" status="basic"
+        (click)="open(dialog)" class="me-3">
+        <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="edit-2-outline">
+        </nb-icon>
+      </button>
+      <button nbTooltip="Xóa" nbTooltipPlacement="right" nbTooltipStatus="warning" nbButton status="basic"
+        (click)="deleteUnit(data.id)">
+        <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="trash-outline">
+        </nb-icon>
+      </button>
+    </div>
+
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row mb-3">
+      <div class="col-8">
+        <div class="mb-3">
+          <span class="fw-semibold">Người Tạo : </span> <span class="text-danger">{{data.User.full_name}}</span>
         </div>
 
-    </nb-card-header>
-    <nb-card-body>
-        <div class="row mb-3">
-            <div class="col-8">
-                <div class="mb-3">
-                    <span class="fw-semibold">Người Tạo : </span> <span
-                        class="text-danger">{{data.User.full_name}}</span>
-                </div>
-
-                <div class="mb-3">
-                    <span class="fw-semibold">Bộ Môn : </span>
-                    <span>{{data.Specialized.name}}</span>
-                </div>
-
-                <div class="">
-                    <span class="fw-semibold"> Trạng Thái :</span>
-                    <span> {{data.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</span>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-6">
-                        <p class="fw-semibold">Ngày tạo</p>
-                        <p class="fw-semibold">Ngày cập nhật</p>
-                        <p class="fw-semibold ">Ngày bắt đầu</p>
-                        <p class="fw-semibold ">Ngày kết thúc</p>
-                    </div>
-                    <div class="col-6">
-                        <p class="text-black-50" *ngIf="planDetail.createdAt"> {{data.createdAt | date: 'dd/MM/yyyy'}}
-                        </p>
-
-                        <p class="text-black-50" *ngIf="planDetail.updatedAt; else elseBlock">
-                            {{data.updatedAt | date: 'dd/MM/yyyy'}}
-                        </p>
-                        <ng-template #elseBlock *ngIf="data.pubishedAt; else elseBlock">
-                            <p></p>
-                        </ng-template>
-
-                        <p class="text-black-50" *ngIf="data.pubishedAt; else elseBlock">{{data.pubishedAt | date:
-                            'dd/MM/yyyy'}}</p>
-                        <ng-template #elseBlock>
-                            <p>Chưa cập nhật</p>
-                        </ng-template>
-
-                        <p class="text-black-50" *ngIf="data.fishdedAt; else elseBlock">{{data.fishdedAt | date:
-                            'dd/MM/yyyy'}}</p>
-                        <ng-template #elseBlock>
-                            <p>Chưa cập nhật</p>
-                        </ng-template>
-
-                    </div>
-                </div>
-
-            </div>
+        <div class="mb-3">
+          <span class="fw-semibold">Bộ Môn : </span>
+          <span>{{data.Specialized.name}}</span>
         </div>
 
         <div class="">
-            <span class="d-block mb-3 fw-semibold"> Mô tả </span>
-            <span>
-                {{data.description}}
-            </span>
+          <span class="fw-semibold"> Trạng Thái :</span>
+          <span> {{data.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</span>
         </div>
-    </nb-card-body>
+      </div>
+      <div class="col-4">
+        <div class="row">
+          <div class="col-6">
+            <p class="fw-semibold">Ngày tạo</p>
+            <p class="fw-semibold">Ngày cập nhật</p>
+            <p class="fw-semibold ">Ngày bắt đầu</p>
+            <p class="fw-semibold ">Ngày kết thúc</p>
+          </div>
+          <div class="col-6">
+            <p class="text-black-50" *ngIf="planDetail.createdAt"> {{data.createdAt | date: 'dd/MM/yyyy'}}
+            </p>
+
+            <p class="text-black-50" *ngIf="planDetail.updatedAt; else elseBlock">
+              {{data.updatedAt | date: 'dd/MM/yyyy'}}
+            </p>
+            <ng-template #elseBlock *ngIf="data.pubishedAt; else elseBlock">
+              <p></p>
+            </ng-template>
+
+            <p class="text-black-50" *ngIf="data.pubishedAt; else elseBlock">{{data.pubishedAt | date:
+              'dd/MM/yyyy'}}</p>
+            <ng-template #elseBlock>
+              <p>Chưa cập nhật</p>
+            </ng-template>
+
+            <p class="text-black-50" *ngIf="data.fishdedAt; else elseBlock">{{data.fishdedAt | date:
+              'dd/MM/yyyy'}}</p>
+            <ng-template #elseBlock>
+              <p>Chưa cập nhật</p>
+            </ng-template>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="">
+      <span class="d-block mb-3 fw-semibold"> Mô tả </span>
+      <span>
+        {{data.description}}
+      </span>
+    </div>
+  </nb-card-body>
 </nb-card>
 
 
@@ -88,70 +87,68 @@
 <p>Tài Liệu Liên Quan</p>
 
 <div class="row">
-    <div class="col-4">
-        <app-plan-files [plan_ID]="data.id" />
-
-    </div>
-    <div class="col-8">
-        <app-plan-images-doccument [plan_ID]="data.id" />
-    </div>
+    <app-plan-files [plan_ID]="data.id" />
+</div>
+<div class="row">
+  <app-plan-images-doccument [plan_ID]="data.id" />
 </div>
 
 
 <!-- dilog -->
 <ng-template #dialog let-data let-ref="dialogRef">
-    <nb-card style="width: 600px; height: 700px;">
-      <nb-card-header>Sửa Đề Án</nb-card-header>
-      <nb-card-body>
-        <form *ngIf="dataEdit">
-          <div class="col-lg-12" style="width: 550px;">
-            <div class="mb-3">
-              <label class="form-label">Tên đề án</label>
-              <input type="text" class="form-control" id="name" name="name" [(ngModel)]="dataEdit.name" >
-            </div>
-        
-            <div class="mb-3">
-              <label class="form-label">Người Tạo</label>
-              <select class="form-select" id="userId" name="userId" [(ngModel)]="dataEdit.userId">
-                <option *ngFor="let item of listUser" [value]="item.id">{{ item.full_name }}</option>
-              </select>
-            </div>
-        
-            <div class="mb-3">
-              <label class="form-label">Chuyên Ngành</label>
-              <select class="form-select" id="specializedId" name="specializedId" [(ngModel)]="dataEdit.specializedId">
-                <option *ngFor="let item of listSpecialized" [value]="item.id">{{ item.name }}</option>
-              </select>
-            </div>
-        
-            <div class="mb-3">
-              <label class="form-label">Tên Nhóm</label>
-              <input type="text" class="form-control" id="group" name="group" [(ngModel)]="dataEdit.group">
-            </div>
-
-            <div class="mb-3">
-              <label class="form-label">Trạng thái</label>
-              <select class="form-select" id="status" name="status" [(ngModel)]="dataEdit.status">
-                <option value="0">Đang thực hiện</option>
-                <option value="1">Đã hoàng thành</option>
-              </select>
-            </div>
-        
-            <div class="mb-3">
-              <label class="form-label">Slug</label>
-              <input type="text" class="form-control" id="slug" name="slug" [(ngModel)]="dataEdit.slug">
-            </div>
-        
-            <div class="mb-3">
-              <label class="form-label">Mô tả</label>
-              <textarea class="form-control" id="description" name="description" [(ngModel)]="dataEdit.description" rows="3">{{ data.description }}</textarea>
-            </div>
-        
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary mb-3" (click)="submitForm()">Sửa</button>
-            </div>
+  <nb-card style="width: 600px; height: 700px;">
+    <nb-card-header>Sửa Đề Án</nb-card-header>
+    <nb-card-body>
+      <form *ngIf="dataEdit">
+        <div class="col-lg-12" style="width: 550px;">
+          <div class="mb-3">
+            <label class="form-label">Tên đề án</label>
+            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="dataEdit.name">
           </div>
-        </form>
-      </nb-card-body>
-    </nb-card>
-  </ng-template>
+
+          <div class="mb-3">
+            <label class="form-label">Người Tạo</label>
+            <select class="form-select" id="userId" name="userId" [(ngModel)]="dataEdit.userId">
+              <option *ngFor="let item of listUser" [value]="item.id">{{ item.full_name }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Chuyên Ngành</label>
+            <select class="form-select" id="specializedId" name="specializedId" [(ngModel)]="dataEdit.specializedId">
+              <option *ngFor="let item of listSpecialized" [value]="item.id">{{ item.name }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tên Nhóm</label>
+            <input type="text" class="form-control" id="group" name="group" [(ngModel)]="dataEdit.group">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Trạng thái</label>
+            <select class="form-select" id="status" name="status" [(ngModel)]="dataEdit.status">
+              <option value="0">Đang thực hiện</option>
+              <option value="1">Đã hoàng thành</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" [(ngModel)]="dataEdit.slug">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Mô tả</label>
+            <textarea class="form-control" id="description" name="description" [(ngModel)]="dataEdit.description"
+              rows="3">{{ data.description }}</textarea>
+          </div>
+
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary mb-3" (click)="submitForm()">Sửa</button>
+          </div>
+        </div>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</ng-template>

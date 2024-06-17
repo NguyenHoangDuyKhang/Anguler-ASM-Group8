@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 
 import { API_BASE_URL } from 'app/@core/config/api-endpoint.config';
 import { API_ENDPOINT } from 'app/@core/config/api-endpoint.config';
@@ -52,7 +51,7 @@ export class ServicePlan {
   // queryParams need = { type, pages }
   handleGetAllFiles(plan_ID : number, queryParams : any) : Observable<any>  {
     
-    let qParams = `?type=${queryParams.fileType}&plan_ID=${plan_ID}&page=${queryParams.page}`
+    let qParams = `?type=${queryParams.fileType}&plan_ID=${plan_ID}&page=${queryParams.page}&limit=${queryParams.limit}`
 
     return this.http.get(API_BASE_URL + API_ENDPOINT.plan.getAllFiles + qParams);
   } 
@@ -63,10 +62,9 @@ export class ServicePlan {
   }
 
   handleAddFile(data : any) :  Observable<any> {
-
-    return this.http.post<Blob>(API_BASE_URL + API_ENDPOINT.plan.addFile, 
-      {headers: new Headers({'Content-Type': 'application/x-www-form-urlencoded'})}
-    );
+    return this.http.post(API_BASE_URL + API_ENDPOINT.plan.addFile, 
+      data
+    )
 
   }
 

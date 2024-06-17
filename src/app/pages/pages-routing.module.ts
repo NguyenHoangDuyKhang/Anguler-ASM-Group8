@@ -29,11 +29,11 @@ const routes: Routes = [{
       component: SpecializedComponent,
       data: {breadcrumb: 'Quản lý Ngành'}    
     },
-    {
-      path: 'subject',
-      component: SubjectComponent,
-      data: {breadcrumb: 'Quản lý Môn'}    
-    },
+    // {
+    //   path: 'subject',
+    //   component: SubjectComponent,
+    //   data: {breadcrumb: 'Quản lý Môn'}    
+    // },
     {
       path: 'users',
       component: UsersComponent,

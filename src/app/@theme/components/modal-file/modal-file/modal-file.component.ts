@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NbDialogRef } from '@nebular/theme';
 
 import { ServicePlan } from 'app/@core/services/apis/plan.service';
 
+import { TYPE_FILES } from 'app/@core/utils/role.util';
 
 @Component({
   selector: 'app-modal-file',
@@ -15,83 +16,89 @@ export class ModalFileComponent {
 
   @Input() plan_ID: number;
   @Input() fileType: number;
-  file : FileList
+  listFile = []
+
+  @Output() lastesData: EventEmitter<any> = new EventEmitter();
+
 
   constructor(
-    private router: Router, 
-    private servicePlan: ServicePlan, 
+    private router: Router,
+    private servicePlan: ServicePlan,
     private activeRouter: ActivatedRoute,
+    protected ref: NbDialogRef<ModalFileComponent>
 
-  ) {}
+  ) { }
 
   ngOnInit(): void {
 
-    console.log(this.fileType);
-    console.log(this.plan_ID);
+    console.log('type s', this.fileType);
+    console.log('planID', this.plan_ID);
   }
 
   onSubmit() {
-    console.log(this.plan_ID);
-    console.log(this.fileType);
-
-
- 
+    this.AddFile()
   }
 
   onImagePicked(event: Event) {
-    // this.file = (event.target as HTMLInputElement).files[0]
 
-    let file = (event.target as HTMLInputElement).files[0]
+    let fileInput = (event.target as HTMLInputElement).files
 
-    
-    const formData1 : FormData = new FormData();
+    if(this.fileType === TYPE_FILES.file) {
+      for (var i = 0; i < fileInput.length; i++) {
+        if(fileInput[i].type == 'image/jpg' || fileInput[i].type == 'image/png' || fileInput[i].type === 'image/jpeg') {
+          alert('vui long chon dung dinh dang')
+          this.ref.close()
+          break;
 
-    console.log(file);
+        }else {
+          console.log('push');
+          
+          this.listFile.push(fileInput[i]);
+        }
+      }
+    }
 
-    formData1.append('file', file, file.name)
 
-    console.log(formData1);
-
-
-    this.servicePlan.handleAddFile(formData1)
-    .pipe()
-        .subscribe({
-          next:this.handleSuccess.bind(this),
-          error: this.handleFailed.bind(this),
-        });
+    if(this.fileType === TYPE_FILES.image) {
+      for (var i = 0; i < fileInput.length; i++) {
+        if(fileInput[i].type == 'image/jpg' || fileInput[i].type == 'image/png' || fileInput[i].type == 'image/jpeg') {
+          this.listFile.push(fileInput[i]);
+        }else {
+          alert('vui long chon dung dinh dang' + fileInput[i].name )
+          this.ref.close()
+          break;
+        }
+      }
+    }
   }
 
   AddFile() {
 
+    const frmData = new FormData();
+    frmData.append("plan_ID", this.plan_ID.toString());
+    frmData.append("fileType", this.fileType.toString());
 
-    // console.log(this.file, this.file.name);
-    
-    
-    // const formData1 : FormData = new FormData();
-    // formData1.set('file', this.file, this.file.name)
+    for (var i = 0; i < this.listFile.length; i++) {
+      frmData.append("file", this.listFile[i]);
+    }
 
-    // console.log(formData1);
+    this.servicePlan.handleAddFile(frmData)
+      .pipe()
+      .subscribe({
+        next: this.handleSuccess.bind(this),
+        error: this.handleFailed.bind(this),
+      });
 
-
-    // this.servicePlan.handleAddFile(formData1)
-    // .pipe()
-    //     .subscribe({
-    //       next:this.handleSuccess.bind(this),
-    //       error: this.handleFailed.bind(this),
-    //     });
   }
 
-  protected handleSuccess(res : any) : void {
-
-    console.log(res);
-    
-    //   this.modalFileForm.reset()
-    // alert(res.message);
+  protected handleSuccess(res: any): void {
+    this.lastesData = res.data
+    alert(res.message);
+    this.ref.close(this.lastesData);
   }
 
-  protected handleFailed(res : any) {
+  protected handleFailed(res: any) {
     console.log(res);
-    
     // alert(res.error.message);
   }
 

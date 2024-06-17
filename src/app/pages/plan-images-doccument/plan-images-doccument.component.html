@@ -1,8 +1,8 @@
-<nb-card size="medium">
+<nb-card>
   <nb-card-header>
-    <div class="d-flex justify-content-between mb-3">
+    <div class="d-flex justify-content-between  align-items-center">
       <span>Hình ảnh</span>
-      <button class="btn border-primary" (click)="openModal()">+ Upload</button>
+      <button nbButton outline status="info" size="small" (click)="openModal()">+ Upload</button>
     </div>
   </nb-card-header>
 
@@ -13,8 +13,8 @@
       </div>
     </div>
 
-    <div *ngIf="query.page !== query.lastPage" class="text-center mt-3">
-      <button class="btn border" (click)="seeMore(query.page)">xem thêm</button>
+    <div *ngIf="query.page !== lastPage" class="text-center mt-3">
+      <button nbButton outline status="info" size="small" (click)="seeMore(query.page)">xem thêm</button>
     </div>
   </nb-card-body>
 
