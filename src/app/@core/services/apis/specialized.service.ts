@@ -16,6 +16,7 @@ export class ServiceSpecialized {
 
   getOne(id:number| 0 ):Observable<any> {
     return this.http.get(this.url + `specialized/` + id)
+ 
   }
 
   postData(data: any ):Observable<any> {

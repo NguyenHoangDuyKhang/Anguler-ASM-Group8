@@ -24,6 +24,7 @@
           <tr>
             <th scope="col">id</th>
             <th scope="col">Tên đề án</th>
+            <th scope="col">Tên nhóm thực hiện</th>
             <th scope="col">Trạng thái</th>
             <th scope="col">Ngày tạo</th>
             <th scope="col">Xem chi tiết</th>
@@ -33,7 +34,8 @@
           <tr class="" *ngFor="let item of listData">
             <th scope="row">{{item.id}}</th>
             <td>{{item.name}}</td>
-            <td>{{item.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</td>
+            <td>{{item.group}}</td>
+            <td [ngClass]="item.status === 0 ? 'in-progress' : 'completed'">{{item.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</td>
             <td>{{ item.createdAt | date: 'dd/MM/yyyy' }}</td>
             <td>
               <a nbButton nbTooltip="Chi tiết" nbTooltipPlacement="right" outline status="primary"

@@ -26,8 +26,8 @@ export class ServicePlan {
     return this.http.get(this.url + 'users?page=1')
   }
 
-  getOne(id:number| 0 ):Observable<any> {
-    return this.http.get(this.url + `plans/` + id)
+  getOne(identifier: number | string ):Observable<any> {
+    return this.http.get(this.url + `plans/` + identifier)
   }
 
   postData(data: any ):Observable<any> {
