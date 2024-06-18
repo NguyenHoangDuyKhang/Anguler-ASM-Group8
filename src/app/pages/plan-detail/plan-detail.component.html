@@ -8,6 +8,7 @@
         <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="edit-2-outline">
         </nb-icon>
       </button>
+
       <button nbTooltip="Xóa" nbTooltipPlacement="right" nbTooltipStatus="warning" nbButton status="basic"
         (click)="deleteUnit(data.id)">
         <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="trash-outline">
@@ -16,6 +17,8 @@
     </div>
 
   </nb-card-header>
+
+
   <nb-card-body>
     <div class="row mb-3">
       <div class="col-8">
@@ -34,7 +37,7 @@
               <span class="fw-semibold"> Trạng Thái</span>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-10">
             <div class="mb-3">
               <span class="text-danger">{{data.User.full_name}}</span>
             </div>
@@ -56,6 +59,7 @@
 
 
       </div>
+
       <div class="col-4">
         <div class="row">
           <div class="col-6">
@@ -89,7 +93,6 @@
 
           </div>
         </div>
-
       </div>
     </div>
 
@@ -99,7 +102,10 @@
         {{data.description}}
       </span>
     </div>
+
   </nb-card-body>
+
+
 </nb-card>
 
 
@@ -110,13 +116,10 @@
 <p>Tài Liệu Liên Quan</p>
 
 <div class="row">
-  <div class="col-4">
-    <app-plan-files [plan_ID]="data.id" />
-
-  </div>
-  <div class="col-8">
-    <app-plan-images-doccument [plan_ID]="data.id" />
-  </div>
+  <app-plan-files [plan_ID]="data.id" />
+</div>
+<div class="row">
+  <app-plan-images-doccument [plan_ID]="data.id" />
 </div>
 
 

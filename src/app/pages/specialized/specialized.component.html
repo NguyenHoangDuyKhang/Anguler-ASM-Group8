@@ -10,8 +10,8 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <a nbButton outline nbTooltip="Thêm" nbTooltipPlacement="top" status="primary" (click)="open(add)">
-        <nb-icon icon="plus-circle-outline"></nb-icon>
+      <a nbButton status="primary" (click)="open(add)">
+        Thêm Mới
       </a>
     </div>
 
@@ -35,17 +35,13 @@
             <td>{{item.name}}</td>
             <td>{{item.qty_student}}</td>
             <td>
-                <button nbTooltip="Xóa" nbTooltipPlacement="right" nbTooltipStatus="warning" nbButton status="basic"
-                (click)="deleteUnit(item.id)">
-                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="trash-outline">
-                </nb-icon>
+              <button nbButton class="mx-2" nbTooltip="Sửa" nbTooltipPlacement="top" (click)="open(dialog)"
+                (click)="getOne(item.id)"><nb-icon icon="edit-outline"></nb-icon>
               </button>
-              <span style="margin-right: 20px;"></span>
-              <button nbTooltip="Sửa" nbTooltipPlacement="top" nbButton nbTooltipStatus="info" status="basic"
-                (click)="open(dialog)" (click)="getOne(item.id)" class="me-3">
-                <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="edit-2-outline">
-                </nb-icon>
+              <button nbButton nbTooltip="Xóa" nbTooltipPlacement="top" (click)="deleteUnit(item.id)"> <nb-icon
+                  icon="trash-2-outline"></nb-icon>
               </button>
+
             </td>
           </tr>
 

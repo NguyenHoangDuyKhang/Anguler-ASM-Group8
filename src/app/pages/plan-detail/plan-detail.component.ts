@@ -72,7 +72,6 @@ export class PlanDetailComponent implements OnInit {
     this.unit.getAllUser().subscribe(
       (res) => {
         this.listUser = res.data;
-        console.log(this.listUser);
       },
       (error) => {
         console.log(error);
@@ -84,7 +83,6 @@ export class PlanDetailComponent implements OnInit {
     this.unit.getAllspecialized().subscribe(
       (res) => {
         this.listSpecialized = res.data;
-        console.log(this.listSpecialized);
       },
       (error) => {
         console.log(error);

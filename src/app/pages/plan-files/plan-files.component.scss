@@ -1,6 +1,10 @@
 .text-one-line {
     white-space: nowrap;
-    width: 260px;
+    width: 500px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+nb-card-body {
+    padding: 0 !important;
 }
