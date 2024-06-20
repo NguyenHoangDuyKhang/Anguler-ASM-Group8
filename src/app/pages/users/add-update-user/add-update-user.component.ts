@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
+import { NbComponentStatus, NbToastrService } from "@nebular/theme";
 import { UserService } from "app/@core/services/apis/user.service";
 import { delay } from "app/@core/utils/role.util";
 
@@ -20,6 +21,7 @@ export class AddUserComponent implements OnInit {
 
   constructor(
     private router: Router, 
+    private toastrService: NbToastrService,
     private userService: UserService, 
     private activeRouter: ActivatedRoute,
 
@@ -44,12 +46,11 @@ export class AddUserComponent implements OnInit {
 
   setFormData() {
     this.userForm = new FormGroup({
-      first_name: new FormControl('', Validators.required),
+      name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       id: new FormControl(null),
       role_ID: new FormControl(0, Validators.required),
-      last_name: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
   }
 
@@ -94,8 +95,7 @@ export class AddUserComponent implements OnInit {
 
         console.log(this.userForm);
         this.userForm.controls["id"].setValue(user.id);
-        this.userForm.controls["first_name"].setValue(user.first_name);
-        this.userForm.controls["last_name"].setValue(user.last_name);
+        this.userForm.controls["name"].setValue(user.name);
         this.userForm.controls["email"].setValue(user.email);
         this.userForm.controls["role_ID"].setValue(user.role_ID);
         this.userForm.controls["password"].setValue('********');
@@ -107,11 +107,16 @@ export class AddUserComponent implements OnInit {
 
   protected handleSuccess(res : any) : void {
     if(!this.idUser) {this.userForm.reset()}
-    alert(res.message);
+    this.showToast('success', res.message)
+
   }
 
   protected handleFailed(res : any) {
     alert(res.error.message);
+  }
+
+  showToast(status: NbComponentStatus, message: string) {
+    this.toastrService.show(status, message, { status });
   }
 }
 

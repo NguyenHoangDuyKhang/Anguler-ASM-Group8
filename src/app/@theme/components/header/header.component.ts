@@ -106,7 +106,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   getInfo() {
-    return this.localStorageService.getItem<any>(LOCALSTORAGE_KEY.userInfo);
+    let userInfo =   this.localStorageService.getItem<any>(LOCALSTORAGE_KEY.userInfo);
+    return userInfo?.email
   }
 
 
@@ -114,6 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigate([ROUTER_CONFIG.auth.login]).then();
     this.localStorageService.removeItem(LOCALSTORAGE_KEY.token);
     this.localStorageService.removeItem(LOCALSTORAGE_KEY.userInfo);
+    this.localStorageService.removeItem(LOCALSTORAGE_KEY.introlExitTime);
 
     return 
   }

@@ -1,0 +1,11 @@
+.nb-theme-dark {
+    .table {
+        &> :not(caption) {
+            &>* {
+                &>* {
+                    background-color:  red !important;
+                }
+            }
+        }
+    }
+}

@@ -1,5 +1,5 @@
 import { Component, HostBinding, Injectable, OnInit, TemplateRef } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import {  NbDialogService } from '@nebular/theme';
 import { ServicePlan } from '../../@core/services/apis/plan.service';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -39,15 +39,20 @@ export class PlanComponent implements OnInit {
     private dialogService: NbDialogService,
     private unit: ServicePlan,
     private router: Router,
-    private toastrService: NbToastrService
+    private toastrService: NbToastrService,
+
   ) {}
   ngOnInit(): void {
+
+    console.log(localStorage.getItem('userInfo'));
+
+
     this.getAll();
     this.getAllUser();
     this.getAllspecialized();
     this.postData = new FormGroup({
       name: new FormControl('', Validators.required),
-      userId: new FormControl('', Validators.required),
+      status: new FormControl(this.status),
       specializedId: new FormControl('', Validators.required),
       group: new FormControl('', Validators.required),
       slug: new FormControl('', Validators.required),
@@ -128,16 +133,24 @@ export class PlanComponent implements OnInit {
 
   submitAdd() {
     if (this.postData.valid) {
-      const data = {
-        name: this.postData.value.name,
-        userId: this.postData.value.userId,
-        specializedId: this.postData.value.specializedId,
-        group: this.postData.value.group,
-        slug: this.postData.value.slug,
-        status: this.status,
-        description: this.postData.value.description
-      };
-      this.post(data);
+
+      console.log(this.postData.value);
+
+
+      let userInfo = localStorage.getItem('userInfo')
+      if(userInfo) {
+        let user = JSON.parse(userInfo)
+
+        console.log(user);
+        let userId = user?.id
+        let data = {...this.postData.value, userId}
+
+        console.log(data);
+        
+        this.post(data);
+
+      }
+     
     } else {
       this.showToast_Danger('danger');
     }

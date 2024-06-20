@@ -1,8 +1,13 @@
 <nb-card size="medium">
     <nb-card-header>
         <div class="d-flex justify-content-between  align-items-center">
-            <span>Files</span>
-            <button nbButton outline status="info" size="small" (click)="openModal()">+ Upload</button>
+            <span>Files </span>
+            <div class="">
+                <span class="caption mx-3">
+                    hiện có : {{total}}
+                </span>
+                <button nbButton outline status="info" size="small" (click)="openModal()">+ Upload</button>
+            </div>
         </div>
     </nb-card-header>
 
@@ -18,7 +23,8 @@
                         <div class="text-one-line">
                             {{ item.name }}
                         </div>
-                        <span class="caption text-danger py-1" (click)="delFile(item.id)">Xóa</span>
+                        <span style="cursor: pointer;" class="caption text-danger py-1"
+                            (click)="delFile(item.id)">Xóa</span>
                     </div>
                 </div>
 

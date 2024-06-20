@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="col-lg-1">
-      <a nbButton  nbButton nbTooltip="Thêm" nbTooltipPlacement="top" (click)="open(dialog)" status="primary">
+      <a nbButton nbButton (click)="open(dialog)" status="primary">
         Thêm Mới
       </a>
 
@@ -21,15 +21,15 @@
 
   <nb-card-body>
     <div>
-      <table class="table ">
+      <table id="customers">
         <thead>
           <tr>
-            <th scope="col">id</th>
-            <th scope="col">Tên đề án</th>
-            <th scope="col">Tên nhóm thực hiện</th>
-            <th scope="col">Trạng thái</th>
-            <th scope="col">Ngày tạo</th>
-            <th scope="col">Xem chi tiết</th>
+            <th scope="col" class="text-basic">id</th>
+            <th scope="col" class="text-basic">Tên đề án</th>
+            <th scope="col" class="text-basic">Tên nhóm thực hiện</th>
+            <th scope="col" class="text-basic">Trạng thái</th>
+            <th scope="col" class="text-basic">Ngày tạo</th>
+            <th scope="col" class="text-basic">Xem chi tiết</th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +37,8 @@
             <th scope="row">{{item.id}}</th>
             <td>{{item.name}}</td>
             <td>{{item.group}}</td>
-            <td [ngClass]="item.status === 0 ? 'in-progress' : 'completed'">{{item.status === 0 ? 'Đang thực hiện' : 'Đã hoàn thành' }}</td>
+            <td [ngClass]="item.status === 0 ? 'in-progress' : 'completed'">{{item.status === 0 ? 'Đang thực hiện' : 'Đã
+              hoàn thành' }}</td>
             <td>{{ item.createdAt | date: 'dd/MM/yyyy' }}</td>
             <td>
               <a nbButton nbTooltip="Chi tiết" nbTooltipPlacement="right" routerLink="{{item.slug}}"
@@ -67,15 +68,6 @@
               lòng nhập tên đề án</span>
           </div>
 
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Người Tạo</label>
-            <select class="form-select" formControlName="userId">
-              <option *ngFor="let item of listUser" [value]="item.id">{{ item.full_name }}</option>
-            </select>
-            <span class="text-danger"
-              *ngIf="postData.get('userId')!.invalid && (postData.get('userId')!.dirty || postData.get('userId')!.touched)">Vui
-              lòng chọn người tạo</span>
-          </div>
 
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Chuyên Ngành</label>

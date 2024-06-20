@@ -7,6 +7,7 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import {PagesRoutingModule} from './pages-routing.module';
 import {PaginatorModule} from "../@theme/components/paginator/paginator.module";
 import { ModalFileModule } from 'app/@theme/components/modal-file/modal-file.module';
+import { SearchModule } from 'app/@theme/components/search/search.module';
 import { SpecializedComponent } from './specialized/specialized.component';
 import { SubjectComponent } from './subject/subject.component';
 import { PlanComponent } from './plan/plan.component';
@@ -28,6 +29,7 @@ import { AddUserComponent } from './users/add-update-user/add-update-user.compon
     NbMenuModule,
     PaginatorModule,
     ModalFileModule,
+    SearchModule,
     NbCardModule, 
     NbIconModule, 
     NbInputModule, 

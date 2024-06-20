@@ -3,13 +3,13 @@
     <h6>{{data.name}}</h6>
 
     <div class="">
-      <button nbTooltip="Chỉnh Sửa" nbTooltipPlacement="top" nbButton nbTooltipStatus="info" status="basic"
+      <button nbTooltip="Chỉnh Sửa" nbTooltipPlacement="top" nbButton  status="basic"
         (click)="open(dialog)" class="me-3">
         <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="edit-2-outline">
         </nb-icon>
       </button>
 
-      <button nbTooltip="Xóa" nbTooltipPlacement="right" nbTooltipStatus="warning" nbButton status="basic"
+      <button nbTooltip="Xóa" nbTooltipPlacement="right" nbButton status="basic"
         (click)="deleteUnit(data.id)">
         <nb-icon [options]="{ animation: { type: 'zoom' } }" icon="trash-outline">
         </nb-icon>
@@ -69,23 +69,23 @@
             <p class="fw-semibold ">Ngày kết thúc</p>
           </div>
           <div class="col-6">
-            <p class="text-black-50" *ngIf="planDetail.createdAt"> {{data.createdAt | date: 'dd/MM/yyyy'}}
+            <p class="text-basic" *ngIf="data && data.createdAt"> {{data?.createdAt | date: 'dd/MM/yyyy'}}
             </p>
 
-            <p class="text-black-50" *ngIf="planDetail.updatedAt; else elseBlock">
-              {{data.updatedAt | date: 'dd/MM/yyyy'}}
+            <p class="text-basic" *ngIf="data && data.updatedAt; else elseBlock">
+              {{data?.updatedAt | date: 'dd/MM/yyyy'}}
             </p>
-            <ng-template #elseBlock *ngIf="data.pubishedAt; else elseBlock">
+            <ng-template #elseBlock *ngIf="data && data.pubishedAt; else elseBlock">
               <p></p>
             </ng-template>
 
-            <p class="text-black-50" *ngIf="data.pubishedAt; else elseBlock">{{data.pubishedAt | date:
+            <p class="text-basic" *ngIf="data && data.pubishedAt; else elseBlock">{{data.pubishedAt | date:
               'dd/MM/yyyy'}}</p>
             <ng-template #elseBlock>
               <p>Chưa cập nhật</p>
             </ng-template>
 
-            <p class="text-black-50" *ngIf="data.fishdedAt; else elseBlock">{{data.fishdedAt | date:
+            <p class="text-basic" *ngIf="data.fishdedAt; else elseBlock">{{data.fishdedAt | date:
               'dd/MM/yyyy'}}</p>
             <ng-template #elseBlock>
               <p>Chưa cập nhật</p>
@@ -115,10 +115,10 @@
 
 <p>Tài Liệu Liên Quan</p>
 
-<div class="row">
+<div class="row" *ngIf="data && data.id">
   <app-plan-files [plan_ID]="data.id" />
 </div>
-<div class="row">
+<div class="row" *ngIf="data && data.id">
   <app-plan-images-doccument [plan_ID]="data.id" />
 </div>
 
@@ -133,13 +133,6 @@
           <div class="mb-3">
             <label class="form-label">Tên đề án</label>
             <input type="text" class="form-control" id="name" name="name" [(ngModel)]="dataEdit.name">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label">Người Tạo</label>
-            <select class="form-select" id="userId" name="userId" [(ngModel)]="dataEdit.userId">
-              <option *ngFor="let item of listUser" [value]="item.id">{{ item.full_name }}</option>
-            </select>
           </div>
 
           <div class="mb-3">

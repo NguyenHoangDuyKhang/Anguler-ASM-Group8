@@ -19,7 +19,9 @@ import { ModalFileComponent } from 'app/@theme/components/modal-file/modal-file/
 
 export class PlanFilesComponent implements OnInit {
 
-  constructor(private servicePlan: ServicePlan, private dialogService: NbDialogService) { }
+  constructor(private servicePlan: ServicePlan, 
+    private dialogService: NbDialogService,
+   ) { }
 
   @Input() plan_ID !: number
 
@@ -109,8 +111,6 @@ export class PlanFilesComponent implements OnInit {
     });
   }
 
-
-
   downLoadFile(name: string) {
     this.servicePlan.handleDownloadFile(name).subscribe((res) => {
 
@@ -147,6 +147,7 @@ export class PlanFilesComponent implements OnInit {
       
     });
   }
+
 
 
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NbDialogRef } from '@nebular/theme';
+import { NbComponentStatus, NbDialogRef, NbToastrService } from '@nebular/theme';
 
 import { ServicePlan } from 'app/@core/services/apis/plan.service';
 
@@ -24,6 +24,7 @@ export class ModalFileComponent {
   constructor(
     private router: Router,
     private servicePlan: ServicePlan,
+    private toastrService: NbToastrService,
     private activeRouter: ActivatedRoute,
     protected ref: NbDialogRef<ModalFileComponent>
 
@@ -46,7 +47,7 @@ export class ModalFileComponent {
     if(this.fileType === TYPE_FILES.file) {
       for (var i = 0; i < fileInput.length; i++) {
         if(fileInput[i].type == 'image/jpg' || fileInput[i].type == 'image/png' || fileInput[i].type === 'image/jpeg') {
-          alert('vui long chon dung dinh dang')
+          this.showToast('danger', 'Sai định dạng')
           this.ref.close()
           break;
 
@@ -64,7 +65,8 @@ export class ModalFileComponent {
         if(fileInput[i].type == 'image/jpg' || fileInput[i].type == 'image/png' || fileInput[i].type == 'image/jpeg') {
           this.listFile.push(fileInput[i]);
         }else {
-          alert('vui long chon dung dinh dang' + fileInput[i].name )
+          this.showToast('danger', 'Sai định dạng')
+
           this.ref.close()
           break;
         }
@@ -93,13 +95,18 @@ export class ModalFileComponent {
 
   protected handleSuccess(res: any): void {
     this.lastesData = res.data
-    alert(res.message);
+    this.showToast('success', res.message)
+
     this.ref.close(this.lastesData);
   }
 
   protected handleFailed(res: any) {
     console.log(res);
     // alert(res.error.message);
+  }
+  
+  showToast(status: NbComponentStatus, message: string) {
+    this.toastrService.show(status, message, { status });
   }
 
 }

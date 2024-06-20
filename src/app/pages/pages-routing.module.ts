@@ -41,7 +41,7 @@ const routes: Routes = [{
     },
     {
       path: 'users',
-      data: { breadcrumb: 'Quản Lý Đề Án', },
+      data: {breadcrumb: 'Quản lý người dùng'},
         children: [
           {
             path: 'new',

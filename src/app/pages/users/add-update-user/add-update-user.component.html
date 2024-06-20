@@ -8,14 +8,14 @@
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3">
-                        <label for="" class="form-label">First Name</label>
-                        <input nbInput fullWidth name="first_name" formControlName="first_name" required id="first_name"
-                            status="success" autofocus placeholder="First Name">
+                        <label for="" class="form-label">Tên Người Dùng</label>
+                        <input nbInput fullWidth name="name" formControlName="name" required id="name" status="success"
+                            autofocus placeholder="First Name">
                     </div>
 
                     <div
-                        *ngIf="userForm.get('first_name').invalid && (userForm.get('first_name').dirty || userForm.get('first_name').touched)">
-                        <small *ngIf="userForm.get('first_name').hasError('required')">
+                        *ngIf="userForm.get('name').invalid && (userForm.get('name').dirty || userForm.get('name').touched)">
+                        <small *ngIf="userForm.get('name').hasError('required')">
                             <i class="text-danger">Vui lòng nhập thông tin</i>
                         </small>
                     </div>
@@ -23,24 +23,9 @@
                 </div>
                 <div class="col-6">
                     <div class="mb-3">
-                        <label for="" class="form-label">Last Name</label>
-                        <input nbInput fullWidth name="last_name" formControlName="last_name" required id="last_name"
-                            status="success" autofocus placeholder="Last Name">
-                    </div>
-
-                    <div
-                        *ngIf="userForm.get('last_name').invalid && (userForm.get('last_name').dirty || userForm.get('last_name').touched)">
-                        <small *ngIf="userForm.get('last_name').hasError('required')">
-                            <i class="text-danger">Vui lòng nhập thông tin</i>
-                        </small>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="mb-3">
                         <label for="" class="form-label d-block">Email</label>
                         <input nbInput fullWidth name="email" formControlName="email" required id="email"
-                            status="success" autofocus placeholder="Email">
+                            status="success" placeholder="Email">
                     </div>
 
                     <div
@@ -49,8 +34,8 @@
                             <i class="text-danger">Vui lòng nhập thông tin</i>
                         </small>
                     </div>
-
                 </div>
+
                 <div class="col-6">
                     <div *ngIf="!idUser; else elseBlock">
                         <div class="mb-3">

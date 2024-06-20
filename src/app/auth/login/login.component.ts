@@ -1,12 +1,13 @@
-import {Component, OnInit} from "@angular/core";
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {SpinnerService} from "../../@theme/components/spinner/spinner.service";
-import {AuthService} from "../../@core/services/apis";
-import {LocalStorageService} from "../../@core/services/common";
-import {LOCALSTORAGE_KEY, ROUTER_CONFIG} from "../../@core/config";
-import {IAlertMessage} from "../../@theme/components/alert/ngx-alerts.component";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { SpinnerService } from "../../@theme/components/spinner/spinner.service";
+import { AuthService } from "../../@core/services/apis";
+import { LocalStorageService } from "../../@core/services/common";
+import { LOCALSTORAGE_KEY, ROUTER_CONFIG } from "../../@core/config";
+import { IAlertMessage } from "../../@theme/components/alert/ngx-alerts.component";
 import { finalize } from "rxjs";
+import introJs from "intro.js";
 
 @Component({
   selector: 'ngx-login',
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate([ROUTER_CONFIG.pages]).then();
     if (this.loginForm.valid) {
       this.spinner.show
-      this.auth.login(this.loginForm.value).pipe(finalize(()=> {
+      this.auth.login(this.loginForm.value).pipe(finalize(() => {
         this.spinner.hide
       })).subscribe({
         next: this.handleLoginSuccess.bind(this),
@@ -62,14 +63,15 @@ export class LoginComponent implements OnInit {
   }
 
   protected handleLoginSuccess(res) {
-    this.storageService.setItem(LOCALSTORAGE_KEY.userInfo, res.data.email);
+    this.storageService.setItem(LOCALSTORAGE_KEY.userInfo, res.data.info);
     this.storageService.setItem(LOCALSTORAGE_KEY.token, res.data.token);
     this.router.navigate([ROUTER_CONFIG.pages]).then();
     this.spinner.hide();
+    
   }
 
   protected handleLoginFailed() {
     this.spinner.hide();
-    this.alertMessages = [{status: 'danger', message: 'Tài khoản hoặc mật khẩu không chính xác'}];
+    this.alertMessages = [{ status: 'danger', message: 'Tài khoản hoặc mật khẩu không chính xác' }];
   }
 }

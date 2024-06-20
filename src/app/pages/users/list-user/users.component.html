@@ -3,12 +3,9 @@
     <nb-card-header class="d-flex justify-content-between">
 
         <!-- search input -->
-        <nb-form-field>
-            <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
-            <input type="text" nbInput placeholder="Tìm kiếm...">
-        </nb-form-field>
+        <app-search [apiUrl]="pagination.apiUrl" (dataList)="onDataChanged($event)"></app-search>
 
-        <a routerLink="/pages/users/new" nbButton status="primary">Thêm Mới</a> 
+        <a routerLink="/pages/users/new" nbButton status="primary">Thêm Mới</a>
     </nb-card-header>
 
     <ngx-paginator (dataList)="onDataChanged($event)" [apiUrl]="pagination.apiUrl" [current_page]="pagination.page"
@@ -16,12 +13,11 @@
 
     <nb-card-body>
         <div class="table-responsive">
-            <table class="table">
+            <table id="customers">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Tên</th>
-                        <th scope="col">Họ</th>
                         <th scope="col">Email</th>
                         <th scope="col">Quyền Hạn</th>
                         <th scope="col">Thao Tác</th>
@@ -31,8 +27,7 @@
 
                     <tr class="" *ngFor="let item of listUsers; index as i">
                         <td scope="row">{{i + 1}}</td>
-                        <td>{{item.first_name}}</td>
-                        <td>{{item.last_name}}</td>
+                        <td>{{item.name}}</td>
                         <td>{{item.email}}</td>
                         <td>
                             <span *ngIf="item.role_ID === 1; else elseBlock">
@@ -43,7 +38,7 @@
                             </ng-template>
                         </td>
                         <td>
-                            <a routerLink="{{item.id}}" class="mx-2" nbTooltip="Edit" nbTooltipPlacement="top" nbButton
+                            <a routerLink="{{item.id}}" class="mx-2" nbTooltip="Chỉnh Sửa" nbTooltipPlacement="top" nbButton
                                 status="basic">
                                 <nb-icon icon="edit-2-outline">
                                 </nb-icon>
@@ -77,6 +72,8 @@
 
 
     </nb-card-body>
+
+
 
 
 

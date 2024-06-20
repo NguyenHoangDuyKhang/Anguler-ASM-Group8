@@ -22,23 +22,6 @@ export class PlanDetailComponent implements OnInit {
   private index: number = 0;
   @HostBinding('class')
   classes = 'example-items-rows';
-  // end Tost
-  planDetail: IPlans = {
-    id: 1,
-    name: 'Đề Án 1',
-    slug: 'de-an-1',
-    author: 'Thanh Nam',
-    status: 0,
-    status_name: 'Chưa Triển Khai',
-    category: 'Đề án giáo dục',
-    specialize: 'Công Nghệ Thông Tin',
-    description:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti veniam est dolorem delectus molestias impedit. Consequuntur vitae aliquid, ad rerum architecto autem impedit ut deleniti quaerat distinctio temporibus quibusdam eius? ',
-    createdAt: '2017-10-21',
-    updatedAt: '2017-10-22',
-    publishedAt: null,
-    finishedAt: null,
-  };
   dataEdit: any;
   listUser: any;
   listSpecialized: any;
@@ -58,7 +41,6 @@ export class PlanDetailComponent implements OnInit {
     console.log(this.slug);
     this.getOne(this.id);
     this.getAllspecialized();
-    this.getAllUser();
   }
 
   
@@ -68,16 +50,6 @@ export class PlanDetailComponent implements OnInit {
     });
   }
 
-  getAllUser() {
-    this.unit.getAllUser().subscribe(
-      (res) => {
-        this.listUser = res.data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
 
   getAllspecialized() {
     this.unit.getAllspecialized().subscribe(

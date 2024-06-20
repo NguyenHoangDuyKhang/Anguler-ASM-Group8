@@ -1,7 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { IListUser } from 'app/@core/interfaces/user.inrterface';
 import { UserService } from 'app/@core/services/apis/user.service';
-import { NbDialogService } from '@nebular/theme';
+import { NbComponentStatus, NbDialogService, NbToastrService } from '@nebular/theme';
 
 import { AddUserComponent } from '../add-update-user/add-update-user.component';
 
@@ -23,7 +23,12 @@ export class UsersComponent implements OnInit {
   }
   isLoading = false
 
-  constructor(private userService: UserService, private dialogService: NbDialogService) { }
+  constructor(
+    private userService: UserService, 
+    private dialogService: NbDialogService, 
+    private toastrService: NbToastrService,
+
+  ) { }
 
   ngOnInit(): void {
     this.handleGetAllUsers()
@@ -48,11 +53,18 @@ export class UsersComponent implements OnInit {
   
 
   async handleDelUser (id: number) {
-    this.userService.delUser(id).subscribe((res) => {
-      if (res && res.success) {
-        this.handleGetAllUsers()
-      }
-    });
+
+    if(confirm('Bạn chắc chắn muốn xóa')) {
+      this.userService.delUser(id).subscribe((res) => {
+        if (res && res.success) {
+          this.showToast('success', res.message)
+          this.handleGetAllUsers()
+        }
+      });
+    }
+    
+
+    
   }
 
   setState( data : IListUser , pagination: any) {
@@ -60,6 +72,10 @@ export class UsersComponent implements OnInit {
     this.pagination.page = pagination.page
     this.pagination.last_page = pagination.last_page
     this.pagination.apiUrl = pagination.apiUrl
+  }
+
+  showToast(status: NbComponentStatus, message: string) {
+    this.toastrService.show(status, message, { status });
   }
 
 }
