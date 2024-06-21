@@ -4,6 +4,7 @@ import { ServicePlan } from '../../@core/services/apis/plan.service';
 import { NbToastrService, NbComponentStatus } from '@nebular/theme';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { HttpClient  } from '@angular/common/http';
 @Component({
   selector: 'app-plan',
   templateUrl: './plan.component.html',
@@ -35,11 +36,17 @@ export class PlanComponent implements OnInit {
   description: any;
   status: number = 0;
   slug: string;
+   keysearch : string = '';
+   pagination = {
+    page : 1,
+    last_page : 0,
+  }
   constructor(
     private dialogService: NbDialogService,
     private unit: ServicePlan,
     private router: Router,
     private toastrService: NbToastrService,
+    private httpClient: HttpClient
 
   ) {}
   ngOnInit(): void {
@@ -61,15 +68,23 @@ export class PlanComponent implements OnInit {
     console.log(this.postData);
     
   }
-  getPage(res: any) {
+
+
+  getPage(res: any, pagination: any) {
     this.listData = res.data;
+    this.pagination.page = pagination.currentPage
+    this.pagination.last_page = pagination.lastPages
+    console.log(this.pagination);
+    
   }
+
+
   getAll() {
     this.unit.getAll().subscribe(
       (res) => {
-        this.listData = res.data;
-        this.cur_Page = res.pagination.currentPage;
-        this.last_Page = res.pagination.lastPages;
+        this.getPage(res , res.pagination);
+        console.log(res);
+        
       },
       (error) => {
         console.log(error);
@@ -169,4 +184,17 @@ export class PlanComponent implements OnInit {
       }
     );
   }
+
+  onDataChanged(data : any) {
+    if(data.keywords == '') {
+      this.keysearch = ''
+    }
+    console.log(data);
+    
+    this.getPage(data, data.pagination)
+    if(data.keywords) {
+      this.keysearch = data.keywords
+    }
+  }
+
 }

@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
   protected handleLoginSuccess(res) {
 
     console.log(res.data.info.role_ID);
-    if(res.data.info.role_ID !== 1) {
+    if(res.data.info.role_ID) {
       this.showToast('danger', 'Bạn Chưa có quyền truy cập')
 
       this.router.navigate(['/auth/login']).then();
