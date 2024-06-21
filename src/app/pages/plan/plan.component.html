@@ -1,20 +1,10 @@
 <nb-card>
 
   <nb-card-header class="d-flex justify-content-between">
-    <div class="row">
-      <div class="col-lg-11">
-        <form>
-          <input type="text" nbInput placeholder="Tìm kiếm...">
-          <!-- <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon> -->
-        </form>
-      </div>
-    </div>
-    <div class="col-lg-1">
-      <a nbButton nbButton (click)="open(dialog)" status="primary">
-        Thêm Mới
-      </a>
-
-    </div>
+    <app-search></app-search>
+    <a nbButton nbButton (click)="open(dialog)" status="primary">
+      Thêm Mới
+    </a>
 
   </nb-card-header>
 

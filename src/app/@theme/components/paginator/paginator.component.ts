@@ -14,6 +14,7 @@ export class PaginatorComponent implements OnInit {
   @Input() apiUrl: string;
   @Input() current_page: number;
   @Input() last_page: number;
+  @Input() keyword: string = '';
 
   @Output() dataList: EventEmitter<any> = new EventEmitter();
 
@@ -66,7 +67,7 @@ export class PaginatorComponent implements OnInit {
   }
 
   getPaginator(): Observable<any> {
-    return this.apiService.get(this.apiUrl + '?page=' + Number(this.indexPage));
+    return this.apiService.get(this.apiUrl + '?page=' + Number(this.indexPage) + '&keyword=' + this.keyword);
   }
 
   getData() {

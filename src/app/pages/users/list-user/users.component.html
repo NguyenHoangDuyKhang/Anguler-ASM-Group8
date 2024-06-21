@@ -9,7 +9,7 @@
     </nb-card-header>
 
     <ngx-paginator (dataList)="onDataChanged($event)" [apiUrl]="pagination.apiUrl" [current_page]="pagination.page"
-        [last_page]="pagination.last_page"></ngx-paginator>
+        [last_page]="pagination.last_page" [keyword]="keysearch" ></ngx-paginator>
 
     <nb-card-body>
         <div class="table-responsive">

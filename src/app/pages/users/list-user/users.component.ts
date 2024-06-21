@@ -21,6 +21,8 @@ export class UsersComponent implements OnInit {
     last_page : 0,
     apiUrl : 'http://localhost:8181/api/users'
   }
+  keysearch : string = ''
+
   isLoading = false
 
   constructor(
@@ -35,7 +37,12 @@ export class UsersComponent implements OnInit {
   }
 
   onDataChanged(data : any) {
+    console.log(data);
+    
     this.setState(data.data, data.pagination)
+    if(data.keywords) {
+      this.keysearch = data.keywords
+    }
   }
 
   async handleGetAllUsers() {
