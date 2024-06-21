@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { ServicePlan } from 'app/@core/services/apis/plan.service';
 import { IPlanFiles } from 'app/@core/interfaces/plan.interface';
-import { NbDialogService } from '@nebular/theme';
+import { NbComponentStatus, NbDialogService, NbToastrService } from '@nebular/theme';
 import { ModalFileComponent } from 'app/@theme/components/modal-file/modal-file/modal-file.component';
 
 @Component({
@@ -19,8 +19,11 @@ import { ModalFileComponent } from 'app/@theme/components/modal-file/modal-file/
 
 export class PlanFilesComponent implements OnInit {
 
-  constructor(private servicePlan: ServicePlan, 
+  constructor(
+    private servicePlan: ServicePlan, 
     private dialogService: NbDialogService,
+    private toastrService: NbToastrService,
+
    ) { }
 
   @Input() plan_ID !: number
@@ -74,7 +77,8 @@ export class PlanFilesComponent implements OnInit {
     // set lại last page 
     this.lastPage = Math.ceil(this.total / Number(this.query.limit));
 
-    alert(res.message)
+    this.showToast('success', res.message)
+
 
     let index = this.listFiles.findIndex((item) => item.id === res.data.delete_file.id)
     if (index !== -1) {
@@ -146,6 +150,10 @@ export class PlanFilesComponent implements OnInit {
       }
       
     });
+  }
+
+  showToast(status: NbComponentStatus, message: string) {
+    this.toastrService.show(status, message, { status });
   }
 
 

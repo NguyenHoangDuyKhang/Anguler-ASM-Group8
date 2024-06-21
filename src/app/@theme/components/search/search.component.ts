@@ -48,8 +48,11 @@ export class SearchComponent {
   }
 
   protected handleSuccess(res) {
-    this.dataList.emit(res);
-    console.log(res);
+
+    let keywords = this.valueInput
+    let data = {...res, keywords }
+    this.dataList.emit(data);
+    console.log(data);
 
     console.log(this.dataList);
     

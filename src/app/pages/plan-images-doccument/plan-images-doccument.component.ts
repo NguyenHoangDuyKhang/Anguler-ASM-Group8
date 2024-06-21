@@ -54,7 +54,7 @@ export class PlanImagesDoccumentComponent implements OnInit {
 
   handleSuccess (res : any) {
     console.log(res);
-    this.images.push(...res.data)
+    this.images = res.data
     this.query.page = res.pagination.page;
     this.lastPage = res.pagination.last_page
     this.total = res.pagination.total_items
@@ -64,7 +64,10 @@ export class PlanImagesDoccumentComponent implements OnInit {
   seeMore(seeMore: number) {
       let nextPage = seeMore + 1
       this.query.page = nextPage
-      this.getAllFiles(this.plan_ID, this.query)
+      this.servicePlan.handleGetAllFiles(this.plan_ID, this.query)
+      .subscribe((res) => {
+        this.images.push(...res.data)
+      });
   }
 
   openModal() {
@@ -74,9 +77,10 @@ export class PlanImagesDoccumentComponent implements OnInit {
         plan_ID : this.plan_ID
       },
     }).onClose.subscribe((data) => {
+
       if(data && data.length > 0) { 
-        this.images.unshift(...data)
-        console.log(this.images, this.query);
+        this.query.page = 1
+        this.getAllFiles(this.plan_ID, this.query);
       }
     });
   }
