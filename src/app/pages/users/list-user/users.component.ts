@@ -39,6 +39,10 @@ export class UsersComponent implements OnInit {
   onDataChanged(data : any) {
     console.log(data);
     
+    if(data.keywords == '') {
+      this.keysearch = ''
+    }
+    
     this.setState(data.data, data.pagination)
     if(data.keywords) {
       this.keysearch = data.keywords
