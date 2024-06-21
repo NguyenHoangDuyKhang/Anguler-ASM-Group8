@@ -151,13 +151,14 @@
             <label class="form-label">Trạng thái</label>
             <select class="form-select" id="status" name="status" [(ngModel)]="dataEdit.status">
               <option value="0">Đang thực hiện</option>
-              <option value="1">Đã hoàng thành</option>
+              <option value="1">Đã hoàn thành</option>
             </select>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Slug</label>
             <input type="text" class="form-control" id="slug" name="slug" [(ngModel)]="dataEdit.slug">
+            <div id="emailHelp" class="form-text text-danger">Lưu ý: Slug là duy nhất và không được trùng!</div>
           </div>
 
           <div class="mb-3">

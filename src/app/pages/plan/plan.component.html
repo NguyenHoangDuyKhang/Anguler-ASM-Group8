@@ -1,12 +1,13 @@
 <nb-card>
 
   <nb-card-header class="d-flex justify-content-between">
-    <app-search></app-search>
+    <app-search [apiUrl]="API_URL" (dataList)="onDataChanged($event)"></app-search>
     <a nbButton nbButton (click)="open(dialog)" status="primary">
       Thêm Mới
     </a>
   </nb-card-header>
-
+  <ngx-paginator (dataList)="onDataChanged($event)" [apiUrl]="API_URL" [current_page]="pagination.page"
+        [last_page]="pagination.last_page" [keyword]="keysearch" ></ngx-paginator>
 
   <nb-card-body>
     <div>
@@ -37,8 +38,7 @@
         </tbody>
       </table>
     </div>
-    <ngx-paginator [current_page]="cur_Page" [last_page]="last_Page" [apiUrl]='API_URL'
-      (dataList)="getPage($event)"></ngx-paginator>
+   
   </nb-card-body>
 </nb-card>
 
